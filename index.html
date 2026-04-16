@@ -449,7 +449,73 @@
       object-fit: cover;
       display: block;
     }
+.modal-case {
+  width: min(1600px, 100%);
+  background: var(--cream);
+  border-radius: 28px;
+  padding: 2rem;
+}
 
+.case-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 260px;
+  gap: 2rem;
+  align-items: start;
+}
+
+.case-main {
+  min-width: 0;
+}
+
+.case-awards {
+  position: sticky;
+  top: 1.5rem;
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding-top: 0.25rem;
+}
+
+.case-awards-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.3rem;
+}
+
+.award-item {
+  border-left: 2px solid rgba(17, 16, 16, 0.18);
+  padding-left: 0.8rem;
+  font-size: 0.78rem;
+  line-height: 1.35;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--ink);
+}
+
+.award-item span {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--muted);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  margin-top: 0.15rem;
+}
+
+@media (max-width: 1100px) {
+  .case-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .case-awards {
+    position: static;
+    order: 2;
+    margin-top: 1rem;
+  }
+}
     .lightbox {
       position: fixed;
       inset: 0;
@@ -911,7 +977,12 @@
         thumb1: './assets/proyecto1/test.jpg',
         thumb2: './assets/proyecto1/test02.jpg',
         thumb3: './assets/proyecto1/home03.jpg'
-      },
+      awards: [
+      { title: 'Cannes Lions', meta: 'Bronze — Design' },
+      { title: 'Effie Awards', meta: 'Shortlist — Product Innovation' },
+      { title: 'El Ojo', meta: 'Oro — Diseño' }
+    ]
+  },
 
       proj2: {
         title: 'Sky Clans',
@@ -920,7 +991,12 @@
         thumb1: './assets/proyecto2/thumb-1.jpg',
         thumb2: './assets/proyecto2/thumb-2.jpg',
         thumb3: ''
-      },
+      awards: [
+      { title: 'Cannes Lions', meta: 'Bronze — Design' },
+      { title: 'Effie Awards', meta: 'Shortlist — Product Innovation' },
+      { title: 'El Ojo', meta: 'Oro — Diseño' }
+    ]
+  },
 
       proj3: {
         title: 'Proyecto Tres',
@@ -929,7 +1005,12 @@
         thumb1: './assets/proyecto3/thumb-1.jpg',
         thumb2: './assets/proyecto3/thumb-2.jpg',
         thumb3: './assets/proyecto3/thumb-3.jpg'
-      },
+      awards: [
+      { title: 'Cannes Lions', meta: 'Bronze — Design' },
+      { title: 'Effie Awards', meta: 'Shortlist — Product Innovation' },
+      { title: 'El Ojo', meta: 'Oro — Diseño' }
+    ]
+  },
 
       proj4: {
         title: 'Proyecto Cuatro',
@@ -938,7 +1019,12 @@
         thumb1: './assets/proyecto4/thumb-1.jpg',
         thumb2: './assets/proyecto4/thumb-2.jpg',
         thumb3: './assets/proyecto4/thumb-3.jpg'
-      }
+      awards: [
+      { title: 'Cannes Lions', meta: 'Bronze — Design' },
+      { title: 'Effie Awards', meta: 'Shortlist — Product Innovation' },
+      { title: 'El Ojo', meta: 'Oro — Diseño' }
+    ]
+  },
     };
 
     const modal = document.createElement('div');
@@ -965,15 +1051,43 @@ if (modalCloseBtn) {
   });
 }
     function renderProjectModal(project) {
-      modalContent.innerHTML = `
+  const isEmbed = project.heroVideo.includes('vimeo.com') || project.heroVideo.includes('youtube.com');
+  const awardsHTML = project.awards && project.awards.length
+    ? `
+      <aside class="case-awards">
+        <div class="case-awards-label">Awards</div>
+        ${project.awards.map(award => `
+          <div class="award-item">
+            ${award.title}
+            ${award.meta ? `<span>${award.meta}</span>` : ''}
+          </div>
+        `).join('')}
+      </aside>
+    `
+    : '';
+
+  modalContent.innerHTML = `
+    <div class="case-layout">
+      <div class="case-main">
         <div class="case-hero">
-          <iframe
-            src="${project.heroVideo}"
-            frameborder="0"
-            allow="autoplay; fullscreen; picture-in-picture"
-            allowfullscreen
-            style="width:100%; aspect-ratio:16/9; display:block;"
-          ></iframe>
+          ${
+            isEmbed
+              ? `
+                <iframe
+                  src="${project.heroVideo}"
+                  frameborder="0"
+                  allow="autoplay; fullscreen; picture-in-picture"
+                  allowfullscreen
+                  style="width:100%; aspect-ratio:16/9; display:block;"
+                ></iframe>
+              `
+              : `
+                <video controls playsinline style="width:100%; display:block;">
+                  <source src="${project.heroVideo}" type="video/mp4">
+                  Tu navegador no soporta video.
+                </video>
+              `
+          }
         </div>
 
         <div class="case-bottom">
@@ -995,17 +1109,21 @@ if (modalCloseBtn) {
               .join('')}
           </div>
         </div>
-      `;
+      </div>
 
-      modalEl.classList.add('open');
+      ${awardsHTML}
+    </div>
+  `;
 
-      modalContent.querySelectorAll('.case-thumb').forEach(thumb => {
-        thumb.addEventListener('click', () => {
-          lightboxImg.src = thumb.dataset.full;
-          lightbox.classList.add('open');
-        });
-      });
-    }
+  modalEl.classList.add('open');
+
+  modalContent.querySelectorAll('.case-thumb').forEach(thumb => {
+    thumb.addEventListener('click', () => {
+      lightboxImg.src = thumb.dataset.full;
+      lightbox.classList.add('open');
+    });
+  });
+}
 
     document.querySelectorAll('.project-row').forEach(row => {
       row.addEventListener('click', e => {
