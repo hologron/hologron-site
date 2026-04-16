@@ -29,17 +29,21 @@ body {
 }
 
 .cur {
-  width: 12px; height: 12px;
+  width: 12px;
+  height: 12px;
   background: var(--ink);
   border-radius: 50%;
   position: fixed;
   pointer-events: none;
   z-index: 9999;
   transform: translate(-50%,-50%);
-  transition: width .2s, height .2s;
   mix-blend-mode: multiply;
 }
-.cur.big { width: 12px; height: 12px; }
+
+.cur.big {
+  width: 12px;
+  height: 12px;
+}
 
 nav {
   position: fixed;
@@ -545,7 +549,7 @@ footer {
 </footer>
 
 <script>
-  const cur = document.getElementById('cur');
+const cur = document.getElementById('cur');
 const isTouchDevice = window.matchMedia('(hover: none), (pointer: coarse)').matches;
 
 if (!isTouchDevice) {
@@ -557,6 +561,9 @@ if (!isTouchDevice) {
     cur.style.left = mx + 'px';
     cur.style.top = my + 'px';
   });
+} else {
+  cur.style.display = 'none';
+}
 
   // Preview cards
   const cards = {};
