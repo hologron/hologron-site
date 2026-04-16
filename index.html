@@ -487,6 +487,33 @@ footer {
   <a href="#work" class="nav-item">Work</a>
   <a href="#contacto" class="nav-item">Chat</a>
 </nav>
+<div class="mobile-nav">
+  <button class="mobile-nav-bar" id="mobileMenuToggle" type="button">
+    <span class="mobile-nav-left">✦</span>
+    <span class="mobile-nav-right">
+      <span>Menu</span>
+      <span class="mobile-nav-icon" id="mobileMenuIcon">☰</span>
+    </span>
+  </button>
+
+  <div class="mobile-nav-panel" id="mobileMenuPanel">
+    <a href="#hey" class="mobile-link">Hey</a>
+
+    <button class="mobile-link mobile-work-toggle" id="mobileWorkToggle" type="button">
+      <span>Work</span>
+      <span id="mobileWorkIcon">+</span>
+    </button>
+
+    <div class="mobile-submenu" id="mobileWorkSubmenu">
+      <a href="#" class="mobile-sublink" data-project="proj1">Home Tank</a>
+      <a href="#" class="mobile-sublink" data-project="proj2">Sky Clans</a>
+      <a href="#" class="mobile-sublink" data-project="proj3">Proyecto Tres</a>
+      <a href="#" class="mobile-sublink" data-project="proj4">Proyecto Cuatro</a>
+    </div>
+
+    <a href="#contacto" class="mobile-link">Chat</a>
+  </div>
+</div>
 
 <section class="hero" id="hey">
   <div class="hero-meta">
@@ -746,7 +773,86 @@ document.addEventListener('keydown', (e) => {
     modalEl.classList.remove('open');
   }
 });
+const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+const mobileMenuPanel = document.getElementById('mobileMenuPanel');
+const mobileMenuIcon = document.getElementById('mobileMenuIcon');
 
+const mobileWorkToggle = document.getElementById('mobileWorkToggle');
+const mobileWorkSubmenu = document.getElementById('mobileWorkSubmenu');
+const mobileWorkIcon = document.getElementById('mobileWorkIcon');
+
+if (mobileMenuToggle && mobileMenuPanel) {
+  mobileMenuToggle.addEventListener('click', () => {
+    const isOpen = mobileMenuPanel.classList.toggle('open');
+    mobileMenuIcon.textContent = isOpen ? '✕' : '☰';
+  });
+}
+
+if (mobileWorkToggle && mobileWorkSubmenu) {
+  mobileWorkToggle.addEventListener('click', () => {
+    const isOpen = mobileWorkSubmenu.classList.toggle('open');
+    mobileWorkIcon.textContent = isOpen ? '−' : '+';
+  });
+}
+
+document.querySelectorAll('.mobile-link[href^="#"]').forEach(link => {
+  link.addEventListener('click', () => {
+    mobileMenuPanel.classList.remove('open');
+    mobileMenuIcon.textContent = '☰';
+  });
+});
+
+document.querySelectorAll('.mobile-sublink').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    const projectId = link.dataset.project;
+    const project = projectData[projectId];
+    if (!project) return;
+
+    modalContent.innerHTML = `
+      <div class="case-hero">
+        <iframe
+          src="${project.heroVideo}"
+          frameborder="0"
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowfullscreen
+          style="width:100%; aspect-ratio:16/9; display:block;"
+        ></iframe>
+      </div>
+
+      <div class="case-bottom">
+        <div class="case-info">
+          <h2 class="case-title">/${project.title}</h2>
+          <p class="case-desc">${project.description}</p>
+        </div>
+
+        <div class="case-thumbs">
+          ${[project.thumb1, project.thumb2, project.thumb3]
+            .filter(Boolean)
+            .map((thumb, i) => `
+              <div class="case-thumb" data-full="${thumb}">
+                <img src="${thumb}" alt="${project.title} imagen ${i + 1}">
+              </div>
+            `).join('')}
+        </div>
+      </div>
+    `;
+
+    modalEl.classList.add('open');
+    mobileMenuPanel.classList.remove('open');
+    mobileWorkSubmenu.classList.remove('open');
+    mobileMenuIcon.textContent = '☰';
+    mobileWorkIcon.textContent = '+';
+
+    modalContent.querySelectorAll('.case-thumb').forEach((thumb) => {
+      thumb.addEventListener('click', () => {
+        lightboxImg.src = thumb.dataset.full;
+        lightbox.classList.add('open');
+      });
+    });
+  });
+});
 </script>
 </body>
 </html>
