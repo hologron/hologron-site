@@ -344,9 +344,9 @@ footer {
 
 .case-thumbs {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 220px));
+  grid-template-columns: repeat(3, 220px);
   gap: 1rem;
-  justify-content: end; /* 👈 clave */
+  justify-content: end;
 }
 
 .case-thumb {
@@ -365,9 +365,16 @@ footer {
 
 .case-thumb img {
   width: 100%;
-  height: 220px;
+  height: 200px;
   object-fit: cover;
   display: block;
+}
+
+@media (max-width: 900px) {
+  .case-thumbs {
+    grid-template-columns: 1fr;
+    justify-content: stretch;
+  }
 }
 
 .lightbox {
