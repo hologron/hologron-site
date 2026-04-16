@@ -682,7 +682,39 @@
       button {
         cursor: auto;
       }
+      @media (max-width: 768px) {
+  .modal-close-btn {
+    top: 0.85rem;
+    right: 0.85rem;
+    width: 52px;
+    height: 52px;
+    font-size: 1.2rem;
+  }
+}
     }
+    .modal-close-btn {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  width: 46px;
+  height: 46px;
+  border: none;
+  border-radius: 999px;
+  background: #111;
+  color: var(--cream);
+  font-size: 1.1rem;
+  line-height: 1;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1100;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+}
+
+.modal-shell.open .modal-close-btn {
+  display: inline-flex;
+}
   </style>
 </head>
 <body>
@@ -912,22 +944,28 @@
     };
 
     const modal = document.createElement('div');
-    modal.innerHTML = `
-      <div id="modal" class="modal-shell">
-        <div id="modalContent" class="modal-case"></div>
-      </div>
+modal.innerHTML = `
+  <div id="modal" class="modal-shell">
+    <button id="modalCloseBtn" class="modal-close-btn" type="button" aria-label="Cerrar">✕</button>
+    <div id="modalContent" class="modal-case"></div>
+  </div>
 
-      <div id="lightbox" class="lightbox">
-        <img id="lightboxImg" src="" alt="Imagen ampliada">
-      </div>
-    `;
+  <div id="lightbox" class="lightbox">
+    <img id="lightboxImg" src="" alt="Imagen ampliada">
+  </div>
+`;
     document.body.appendChild(modal);
 
     const modalEl = document.getElementById('modal');
     const modalContent = document.getElementById('modalContent');
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightboxImg');
-
+    const modalCloseBtn = document.getElementById('modalCloseBtn');
+if (modalCloseBtn) {
+  modalCloseBtn.addEventListener('click', () => {
+    modalEl.classList.remove('open');
+  });
+}
     function renderProjectModal(project) {
       modalContent.innerHTML = `
         <div class="case-hero">
