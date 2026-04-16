@@ -344,9 +344,11 @@ footer {
 
 .case-thumbs {
   display: grid;
-  grid-template-columns: repeat(3, 220px);
+  grid-template-columns: repeat(3, 200px);
   gap: 1rem;
   justify-content: end;
+  justify-self: end;
+   margin-left: auto;
 }
 
 .case-thumb {
@@ -409,10 +411,12 @@ footer {
     border-radius: 20px;
   }
 
-  .case-bottom {
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
-  }
+ .case-bottom {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
 
   .case-thumbs {
     grid-template-columns: 1fr;
