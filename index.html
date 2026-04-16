@@ -343,15 +343,16 @@ footer {
 }
 
 .case-thumbs {
-  display: grid;
-  grid-template-columns: repeat(3, 200px);
+  display: flex;
+  justify-content: flex-end;
   gap: 1rem;
-  justify-content: end;
-  justify-self: end;
-   margin-left: auto;
+  width: 100%;
+  flex-wrap: nowrap;
 }
 
 .case-thumb {
+  width: 200px;
+  flex: 0 0 200px;
   background: #111;
   border-radius: 18px;
   overflow: hidden;
@@ -374,8 +375,18 @@ footer {
 
 @media (max-width: 900px) {
   .case-thumbs {
-    grid-template-columns: 1fr;
-    justify-content: stretch;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .case-thumb {
+    width: 100%;
+    flex: none;
+  }
+
+  .case-thumb img {
+    height: auto;
+    max-height: 260px;
   }
 }
 
