@@ -578,7 +578,7 @@ const projectData = {
   proj1: {
     title: "Home Tank",
     description: "Una solución pensada para transformar un objeto funcional en una pieza de diseño con presencia visual, simpleza y carácter.",
-    heroVideo: "./assets/proyecto1/video.mp4",
+    heroVideo: "https://player.vimeo.com/video/1164039633",
     thumb1: "./assets/proyecto1/test.jpg",
     thumb2: "",
     thumb3: ""
@@ -642,10 +642,13 @@ if (!project) return;
 
     modalContent.innerHTML = `
       <div class="case-hero">
-        <video controls playsinline preload="metadata">
-          <source src="${project.heroVideo}" type="video/mp4">
-          Tu navegador no soporta video.
-        </video>
+       <iframe
+  src="${project.heroVideo}"
+  frameborder="0"
+  allow="autoplay; fullscreen; picture-in-picture"
+  allowfullscreen
+  style="width:100%; aspect-ratio:16/9; display:block;"
+></iframe>
       </div>
 
       <div class="case-bottom">
