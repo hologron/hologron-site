@@ -445,6 +445,17 @@ footer {
   .case-desc {
     font-size: 1rem;
   }
+  @media (hover: none), (pointer: coarse) {
+  .cur {
+    display: none;
+  }
+
+  body,
+  .project-row,
+  a {
+    cursor: auto;
+  }
+}
 }
 </style>
 </head>
@@ -535,12 +546,25 @@ footer {
 
 <script>
   const cur = document.getElementById('cur');
+const isTouchDevice = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+
+if (!isTouchDevice) {
   let mx = 0, my = 0;
+
   document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
+    mx = e.clientX;
+    my = e.clientY;
     cur.style.left = mx + 'px';
     cur.style.top = my + 'px';
   });
+
+  document.querySelectorAll('a').forEach(el => {
+    el.addEventListener('mouseenter', () => cur.classList.add('big'));
+    el.addEventListener('mouseleave', () => cur.classList.remove('big'));
+  });
+} else {
+  cur.style.display = 'none';
+}
   document.querySelectorAll('a').forEach(el => {
     el.addEventListener('mouseenter', () => cur.classList.add('big'));
     el.addEventListener('mouseleave', () => cur.classList.remove('big'));
