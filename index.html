@@ -590,6 +590,7 @@ const projectData = {
    heroVideo: "https://player.vimeo.com/video/1174533014",
     thumb1: "./assets/proyecto2/thumb-1.jpg",
     thumb2: "./assets/proyecto2/thumb-2.jpg",
+      thumb3: ""
   },
 
   proj3: {
@@ -656,16 +657,15 @@ if (!project) return;
           <p class="case-desc">${project.description}</p>
         </div>
 
-        <div class="case-thumbs">
-          <div class="case-thumb" data-full="${project.thumb1}">
-            <img src="${project.thumb1}" alt="${project.title} imagen 1">
-          </div>
-          <div class="case-thumb" data-full="${project.thumb2}">
-            <img src="${project.thumb2}" alt="${project.title} imagen 2">
-          </div>
-          <div class="case-thumb" data-full="${project.thumb3}">
-            <img src="${project.thumb3}" alt="${project.title} imagen 3">
-          </div>
+ <div class="case-thumbs">
+  ${[project.thumb1, project.thumb2, project.thumb3]
+    .filter(Boolean)
+    .map((thumb, i) => `
+      <div class="case-thumb" data-full="${thumb}">
+        <img src="${thumb}" alt="${project.title} imagen ${i + 1}">
+      </div>
+    `).join('')}
+</div>
         </div>
       </div>
     `;
