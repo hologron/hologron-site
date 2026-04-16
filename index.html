@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hologron</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream: #f0ece3;
+  --ink: #111010;
+  --muted: #9a9590;
+--ff: 'Inter', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--ff);
+  font-weight: 400;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+.cur {
+  width: 12px; height: 12px;
+  background: var(--ink);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%,-50%);
+  transition: width .2s, height .2s;
+  mix-blend-mode: multiply;
+}
+.cur.big { width: 40px; height: 40px; }
+
+nav {
+  position: fixed;
+  top: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  background: #1a1a1a;
+  border-radius: 100px;
+  padding: 0.35rem 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+}
+.nav-item {
+  font-family: var(--ff);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: rgba(240,236,227,0.5);
+  padding: 0.45rem 1.15rem;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: color .2s, background .2s;
+  white-space: nowrap;
+}
+.nav-item:hover { color: rgba(240,236,227,0.85); }
+.nav-item.active { background: var(--cream); color: var(--ink); font-weight: 700; }
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 3.5rem 3rem;
+  position: relative;
+  border-bottom: 1px solid rgba(17,16,16,0.12);
+  overflow: hidden;
+
+  background: radial-gradient(
+    circle at 50% 0%,
+    #ffe94d 0%,
+    #f7e77a 25%,
+    #f0ece3 65%
+  );
+}
+.hero-meta {
+  position: absolute;
+  top: 50%; right: 3.5rem;
+  transform: translateY(-50%);
+  display: flex; flex-direction: column;
+  align-items: flex-end; gap: 1rem;
+}
+.hero-tag {
+  font-size: 0.68rem; font-weight: 600;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--muted);
+}
+.hero-avail {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-size: 0.75rem; font-weight: 500;
+  border: 1px solid rgba(17,16,16,0.18);
+  padding: 0.4rem 0.9rem; border-radius: 100px;
+}
+.hero-avail::before {
+  content: ''; width: 6px; height: 6px;
+  background: #3d9e4a; border-radius: 50%;
+}
+.hero-sub {
+  font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+  color: var(--muted); line-height: 1.55;
+  margin-bottom: 0.5rem; max-width: 500px;
+  animation: fadeUp .8s ease both;
+}
+.hero-name {
+  font-size: clamp(5rem, 14vw, 16rem);
+  font-weight: 400; /* 👈 clave */
+  letter-spacing: -0.02em;
+  line-height: 0.9;
+}
+.hero-name em { font-style: italic; }
+
+#work { padding: 5rem 3.5rem 0; }
+
+.work-heading {
+  font-size: clamp(4rem, 11vw, 12rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.88;
+  margin-bottom: 4rem;
+  margin-left: -0.05em;
+}
+.work-heading em { font-style: italic; }
+
+.project-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  align-items: center;
+  padding: 1.8rem 0;
+  border-top: 1px solid rgba(17,16,16,0.1);
+  cursor: none;
+  text-decoration: none;
+  color: inherit;
+  gap: 1rem;
+  transition: background .2s;
+}
+.project-row:last-child { border-bottom: 1px solid rgba(17,16,16,0.1); }
+
+.project-title {
+  font-size: clamp(1.3rem, 2.5vw, 2.2rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--muted);
+  transition: color .25s;
+}
+.project-row:hover .project-title { color: var(--ink); }
+
+.project-cats {
+  font-size: 0.82rem; font-weight: 500;
+  color: var(--muted);
+  transition: color .25s, font-weight .25s;
+}
+.project-row:hover .project-cats { color: var(--ink); font-weight: 700; }
+
+.project-type {
+  font-size: 0.8rem; font-weight: 500;
+  color: var(--muted); text-align: right;
+  white-space: nowrap;
+  transition: color .25s;
+}
+.project-row:hover .project-type { color: var(--ink); }
+
+/* floating preview */
+.prev-card {
+  position: fixed;
+  width: 260px;
+  height: 170px;
+  border-radius: 14px;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0;
+  transform: scale(0.88) rotate(-2deg);
+  transition: opacity .22s ease, transform .22s ease;
+  overflow: hidden;
+  background: #111;
+}
+
+.prev-card.on {
+  opacity: 1;
+  transform: scale(1) rotate(-1deg);
+}
+
+.prev-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.manifesto {
+  padding: 8rem 3.5rem;
+  border-top: 1px solid rgba(17,16,16,0.1);
+}
+.manifesto p {
+  font-size: clamp(1.8rem, 4vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  max-width: 880px;
+}
+.manifesto p em { font-style: italic; color: var(--muted); }
+
+footer {
+  border-top: 1px solid rgba(17,16,16,0.12);
+  padding: 4rem 3.5rem 3rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end; gap: 3rem;
+}
+.footer-label {
+  font-size: 0.68rem; font-weight: 600;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 1rem;
+}
+.footer-cta {
+  font-size: clamp(3rem, 7vw, 8rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.88;
+  color: var(--ink);
+  text-decoration: none;
+  display: block;
+  margin-left: -0.05em;
+  transition: color .2s;
+}
+.footer-cta:hover { color: var(--muted); }
+
+.footer-links {
+  display: flex; flex-direction: column;
+  gap: 0.8rem; align-items: flex-end;
+  padding-bottom: 0.5rem;
+}
+.footer-link {
+  font-size: 0.75rem; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--muted); text-decoration: none;
+  transition: color .2s;
+}
+.footer-link:hover { color: var(--ink); }
+
+.footer-bottom {
+  grid-column: 1/-1;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(17,16,16,0.1);
+  display: flex; justify-content: space-between;
+  font-size: 0.68rem; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--muted);
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(35px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  nav { top: 1rem; }
+  .nav-item { font-size: 0.75rem; padding: 0.38rem 0.9rem; }
+  .hero { padding: 0 1.5rem 2.5rem; }
+  .hero-meta { position: static; transform: none; align-items: flex-start; margin-bottom: 2rem; flex-direction: row; flex-wrap: wrap; }
+  #work { padding: 3rem 1.5rem 0; }
+  .project-row { grid-template-columns: 1fr auto; }
+  .project-cats { display: none; }
+  .manifesto { padding: 5rem 1.5rem; }
+  footer { grid-template-columns: 1fr; padding: 3rem 1.5rem 2rem; }
+  .footer-links { align-items: flex-start; }
+  .prev-card { display: none; }
+}
+.modal-shell {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  z-index: 999;
+  overflow-y: auto;
+  padding: 2rem;
+}
+
+.modal-shell.open {
+  display: flex;
+}
+
+.modal-case {
+  width: min(1450px, 100%);
+  background: var(--cream);
+  border-radius: 28px;
+  padding: 2rem;
+}
+
+.case-hero {
+  width: 100%;
+  border-radius: 22px;
+  overflow: hidden;
+  background: #000;
+  margin-bottom: 1.5rem;
+}
+
+.case-hero video,
+.case-hero img {
+  width: 100%;
+  display: block;
+  max-height: 78vh;
+  object-fit: cover;
+}
+
+.case-bottom {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.case-info {
+  padding-top: 0.3rem;
+}
+
+.case-title {
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.case-desc {
+  font-size: 1.1rem;
+  line-height: 1.45;
+  color: var(--ink);
+  max-width: 520px;
+}
+
+.case-thumbs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.case-thumb {
+  background: #111;
+  border-radius: 18px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid rgba(17,16,16,0.08);
+  transition: transform .2s ease, opacity .2s ease;
+}
+
+.case-thumb:hover {
+  transform: translateY(-2px);
+  opacity: 0.95;
+}
+
+.case-thumb img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.82);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1200;
+  padding: 2rem;
+}
+
+.lightbox.open {
+  display: flex;
+}
+
+.lightbox img {
+  max-width: 92vw;
+  max-height: 88vh;
+  border-radius: 20px;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .modal-shell {
+    padding: 0.75rem;
+  }
+
+  .modal-case {
+    padding: 1rem;
+    border-radius: 20px;
+  }
+
+  .case-bottom {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .case-thumbs {
+    grid-template-columns: 1fr;
+  }
+
+  .case-thumb img {
+    height: auto;
+    max-height: 260px;
+  }
+
+  .case-title {
+    font-size: 2.5rem;
+  }
+
+  .case-desc {
+    font-size: 1rem;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="cur" id="cur"></div>
+<div class="prev-card pc1" id="pc1">
+  <img src="./assets/proyecto1/test.jpg">
+</div>
+
+<div class="prev-card pc2" id="pc2">
+  <img src="./assets/proyecto2/thumb-1.jpg">
+</div>
+
+<div class="prev-card pc3" id="pc3">
+  <img src="./assets/proyecto3/thumb-1.jpg">
+</div>
+
+<div class="prev-card pc4" id="pc4">
+  <img src="./assets/proyecto4/thumb-1.jpg">
+</div>
+
+<nav>
+  <a href="#hey" class="nav-item active">Hey</a>
+  <a href="#work" class="nav-item">Work</a>
+  <a href="#contacto" class="nav-item">Chat</a>
+</nav>
+
+<section class="hero" id="hey">
+  <div class="hero-meta">
+    <span class="hero-tag">Estrategia Creativa &amp; Publicidad</span>
+    <span class="hero-avail">Disponible para proyectos</span>
+  </div>
+  <p class="hero-sub">No me lo vas a creer, <br> pero yo programé este site.</p>
+  <h1 class="hero-name">Leonel <em>Alvarado</em></h1>
+</section>
+
+<section id="work">
+  <h2 class="work-heading">Poco,pero<br><em>honesto®</em></h2>
+
+  <div>
+ <a href="#" class="project-row" data-pc="pc1" data-project="proj1">
+  <span class="project-title">/Home Tank</span>
+  <span class="project-cats">Product Design</span>
+  <span class="project-type">Rotoplas</span>
+</a>
+
+<a href="#" class="project-row" data-pc="pc2" data-project="proj2">
+  <span class="project-title">/Nombre del proyecto dos</span>
+  <span class="project-cats">Branding / Posicionamiento / Social</span>
+  <span class="project-type">Branding</span>
+</a>
+
+<a href="#" class="project-row" data-pc="pc3" data-project="proj3">
+  <span class="project-title">/Nombre del proyecto tres</span>
+  <span class="project-cats">Insight / Activación / OOH</span>
+  <span class="project-type">Activación</span>
+</a>
+
+<a href="#" class="project-row" data-pc="pc4" data-project="proj4">
+  <span class="project-title">/Nombre del proyecto cuatro</span>
+  <span class="project-cats">Digital / Contenido / Estrategia</span>
+  <span class="project-type">Digital</span>
+</a>
+  </div>
+</section>
+
+<div class="manifesto">
+  <p>Las mejores ideas no interrumpen —<br><em>hacen que la gente quiera seguir mirando.</em></p>
+</div>
+
+<footer id="contacto">
+  <div>
+    <p class="footer-label">¿Tienes un proyecto?</p>
+    <a href="mailto:tu@email.com" class="footer-cta">Hablemos.</a>
+  </div>
+  <div class="footer-links">
+    <a href="#" class="footer-link">LinkedIn</a>
+    <a href="#" class="footer-link">Instagram</a>
+    <a href="#" class="footer-link">Behance</a>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Leonel Alvarado</span>
+    <span>Guatemala</span>
+    <span>Creatividad</span>
+  </div>
+</footer>
+
+<script>
+  const cur = document.getElementById('cur');
+  let mx = 0, my = 0;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cur.style.left = mx + 'px';
+    cur.style.top = my + 'px';
+  });
+  document.querySelectorAll('a').forEach(el => {
+    el.addEventListener('mouseenter', () => cur.classList.add('big'));
+    el.addEventListener('mouseleave', () => cur.classList.remove('big'));
+  });
+
+  // Preview cards
+  const cards = {};
+  document.querySelectorAll('[id^="pc"]').forEach(el => cards[el.id] = el);
+  let active = null;
+
+  document.querySelectorAll('.project-row').forEach(row => {
+    const cid = row.dataset.pc;
+    const card = cards[cid];
+    if (!card) return;
+    row.addEventListener('mouseenter', () => {
+      if (active && active !== card) active.classList.remove('on');
+      card.classList.add('on');
+      active = card;
+    });
+    row.addEventListener('mouseleave', () => {
+      card.classList.remove('on');
+      active = null;
+    });
+  });
+
+  document.addEventListener('mousemove', e => {
+    if (active) {
+      active.style.left = (e.clientX + 28) + 'px';
+      active.style.top = (e.clientY - 55) + 'px';
+    }
+  });
+
+  // Nav active on scroll
+  const secs = document.querySelectorAll('section[id], footer[id]');
+  const navLinks = document.querySelectorAll('.nav-item');
+  new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(n => n.classList.remove('active'));
+        const a = document.querySelector(`.nav-item[href="#${e.target.id}"]`);
+        if (a) a.classList.add('active'); else navLinks[0].classList.add('active');
+      }
+    });
+  }, { threshold: 0.45 }).observe(document.querySelector('footer'));
+  secs.forEach(s => {
+    new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          navLinks.forEach(n => n.classList.remove('active'));
+          const a = document.querySelector(`.nav-item[href="#${e.target.id}"]`);
+          if (a) a.classList.add('active');
+        }
+      });
+    }, { threshold: 0.4 }).observe(s);
+  });
+  // DATA DE PROYECTOS
+const projectData = {
+  proj1: {
+    title: "Home Tank",
+    description: "Una solución pensada para transformar un objeto funcional en una pieza de diseño con presencia visual, simpleza y carácter.",
+    heroVideo: "./assets/proyecto1/video.mp4",
+    thumb1: "./assets/proyecto1/test.jpg",
+    thumb2: "",
+    thumb3: ""
+  },
+
+  proj2: {
+    title: "Proyecto Dos",
+    description: "Descripción del segundo proyecto.",
+    heroVideo: "./assets/proyecto2/video.mp4",
+    thumb1: "./assets/proyecto2/thumb-1.jpg",
+    thumb2: "./assets/proyecto2/thumb-2.jpg",
+    thumb3: "./assets/proyecto2/thumb-3.jpg"
+  },
+
+  proj3: {
+    title: "Proyecto Tres",
+    description: "Descripción del tercer proyecto.",
+    heroVideo: "./assets/proyecto3/video.mp4",
+    thumb1: "./assets/proyecto3/thumb-1.jpg",
+    thumb2: "./assets/proyecto3/thumb-2.jpg",
+    thumb3: "./assets/proyecto3/thumb-3.jpg"
+  },
+
+  proj4: {
+    title: "Proyecto Cuatro",
+    description: "Descripción del cuarto proyecto.",
+    heroVideo: "./assets/proyecto4/video.mp4",
+    thumb1: "./assets/proyecto4/thumb-1.jpg",
+    thumb2: "./assets/proyecto4/thumb-2.jpg",
+    thumb3: "./assets/proyecto4/thumb-3.jpg"
+  }
+};
+
+// MODAL HTML
+const modal = document.createElement('div');
+modal.innerHTML = `
+  <div id="modal" class="modal-shell">
+    <div id="modalContent" class="modal-case"></div>
+  </div>
+
+  <div id="lightbox" class="lightbox">
+    <img id="lightboxImg" src="" alt="Imagen ampliada">
+  </div>
+`;
+document.body.appendChild(modal);
+
+const modalEl = document.getElementById("modal");
+const modalContent = document.getElementById("modalContent");
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightboxImg");
+
+// ABRIR MODAL
+document.querySelectorAll('.project-row').forEach((row) => {
+  row.addEventListener('click', (e) => {
+    e.preventDefault();
+
+   const projectId = row.dataset.project;
+const project = projectData[projectId];
+
+if (!project) return;
+
+    modalContent.innerHTML = `
+      <div class="case-hero">
+        <video controls playsinline preload="metadata">
+          <source src="${project.heroVideo}" type="video/mp4">
+          Tu navegador no soporta video.
+        </video>
+      </div>
+
+      <div class="case-bottom">
+        <div class="case-info">
+          <h2 class="case-title">/${project.title}</h2>
+          <p class="case-desc">${project.description}</p>
+        </div>
+
+        <div class="case-thumbs">
+          <div class="case-thumb" data-full="${project.thumb1}">
+            <img src="${project.thumb1}" alt="${project.title} imagen 1">
+          </div>
+          <div class="case-thumb" data-full="${project.thumb2}">
+            <img src="${project.thumb2}" alt="${project.title} imagen 2">
+          </div>
+          <div class="case-thumb" data-full="${project.thumb3}">
+            <img src="${project.thumb3}" alt="${project.title} imagen 3">
+          </div>
+        </div>
+      </div>
+    `;
+
+    modalEl.classList.add("open");
+
+    modalContent.querySelectorAll('.case-thumb').forEach((thumb) => {
+      thumb.addEventListener('click', () => {
+        lightboxImg.src = thumb.dataset.full;
+        lightbox.classList.add('open');
+      });
+    });
+  });
+});
+
+// CERRAR MODAL
+modalEl.addEventListener('click', (e) => {
+  if (e.target === modalEl) {
+    modalEl.classList.remove('open');
+  }
+});
+
+lightbox.addEventListener('click', () => {
+  lightbox.classList.remove('open');
+  lightboxImg.src = '';
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && lightbox.classList.contains('open')) {
+    lightbox.classList.remove('open');
+    lightboxImg.src = '';
+    return;
+  }
+
+  if (e.key === 'Escape' && modalEl.classList.contains('open')) {
+    modalEl.classList.remove('open');
+  }
+});
+
+</script>
+</body>
+</html>
