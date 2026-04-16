@@ -558,18 +558,6 @@ if (!isTouchDevice) {
     cur.style.top = my + 'px';
   });
 
-  document.querySelectorAll('a').forEach(el => {
-    el.addEventListener('mouseenter', () => cur.classList.add('big'));
-    el.addEventListener('mouseleave', () => cur.classList.remove('big'));
-  });
-} else {
-  cur.style.display = 'none';
-}
-  document.querySelectorAll('a').forEach(el => {
-    el.addEventListener('mouseenter', () => cur.classList.add('big'));
-    el.addEventListener('mouseleave', () => cur.classList.remove('big'));
-  });
-
   // Preview cards
   const cards = {};
   document.querySelectorAll('[id^="pc"]').forEach(el => cards[el.id] = el);
