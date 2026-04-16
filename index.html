@@ -30,7 +30,12 @@
     }
 
     body {
-      background: var(--cream);
+      background: radial-gradient(
+        circle at 50% 0%,
+        #4f6f52 0%,
+        #7ea07f 32%,
+        #f0ece3 74%
+      );
       color: var(--ink);
       font-family: var(--ff);
       font-weight: 400;
@@ -104,15 +109,8 @@
       position: relative;
       border-bottom: 1px solid rgba(17, 16, 16, 0.12);
       overflow: hidden;
-      background: none; /* 👈 importante */
-}
-  
-  color: var(--ink);
-  font-family: var(--ff);
-  font-weight: 400;
-  overflow-x: hidden;
-  cursor: none;
-}
+      background: transparent;
+    }
 
     .hero-sub {
       font-size: clamp(0.95rem, 1.4vw, 1.15rem);
@@ -389,15 +387,14 @@
     }
 
     .case-desc {
-  font-size: 1.05rem;
-  line-height: 1.6;
-  color: var(--ink);
-  max-width: 520px;
-
-  font-weight: 300;
-  opacity: 0.8;
-  letter-spacing: 0.01em;
-}
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: var(--ink);
+      max-width: 520px;
+      font-weight: 300;
+      opacity: 0.8;
+      letter-spacing: 0.01em;
+    }
 
     .case-thumbs {
       display: flex;
@@ -754,10 +751,6 @@
     <img src="./assets/proyecto3/thumb-1.jpg" alt="Preview proyecto 3" />
   </div>
 
-  <div class="prev-card pc4" id="pc4">
-    <img src="./assets/proyecto4/thumb-1.jpg" alt="Preview proyecto 4" />
-  </div>
-
   <nav>
     <a href="#hey" class="nav-item active">Hey</a>
     <a href="#work" class="nav-item">Work</a>
@@ -832,8 +825,8 @@
 
     <div class="footer-links">
       <a href="https://www.linkedin.com/in/hologron/" class="footer-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-<a href="https://www.instagram.com/hologronn/?hl=es" class="footer-link" target="_blank" rel="noopener noreferrer">Instagram</a>
-<a href="https://www.behance.net/hologron" class="footer-link" target="_blank" rel="noopener noreferrer">Behance</a>
+      <a href="https://www.instagram.com/hologronn/?hl=es" class="footer-link" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <a href="https://www.behance.net/hologron" class="footer-link" target="_blank" rel="noopener noreferrer">Behance</a>
     </div>
 
     <div class="footer-bottom">
@@ -920,7 +913,7 @@
         thumb3: './assets/proyecto1/home03.jpg',
         awards: [
           { title: 'The Clios Awards', meta: 'Shortlist' },
-          { title: 'Young Ones ADC', meta: 'Shortlist' },
+          { title: 'Young Ones ADC', meta: 'Shortlist' }
         ]
       },
 
@@ -932,7 +925,7 @@
         thumb2: './assets/proyecto2/thumb-2.jpg',
         thumb3: '',
         awards: [
-          { title: 'One Show Young Ones', meta: 'Shortlist' },
+          { title: 'One Show Young Ones', meta: 'Shortlist' }
         ]
       },
 
@@ -944,7 +937,7 @@
         thumb2: './assets/proyecto3/thumb-2.jpg',
         thumb3: './assets/proyecto3/thumb-3.jpg',
         awards: []
-      },
+      }
     };
 
     const modal = document.createElement('div');
