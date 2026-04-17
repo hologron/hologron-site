@@ -404,12 +404,13 @@
 
     .case-bottom {
   display: grid;
-  grid-template-columns: 620px minmax(0, 1fr);
-  gap: 3.5rem;
+  grid-template-columns: auto 1fr;
+  gap: 3rem;
   align-items: start;
 }
 
     .case-thumbs {
+      max-width: 520px;
       display: flex;
       flex-direction: row;
       justify-content: flex-start;
@@ -420,16 +421,14 @@
     }
 
     .case-info {
+  margin-left: auto;
+  max-width: 480px;
+  padding-right: 1rem;
   min-width: 0;
-  max-width: 520px;
-  align-self: start;
-  order: 2;
-  padding-left: 0.5rem;
 }
 
     .case-title,
-    .case-desc,
-    .case-info {
+    .case-desc{
       min-width: 0;
     }
 
