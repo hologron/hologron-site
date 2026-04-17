@@ -2,8 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hologron</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />  <title>Hologron</title>
 
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐐</text></svg>">
 
@@ -41,6 +40,7 @@
       font-weight: 400;
       overflow-x: hidden;
       cursor: none;
+      padding-top: env(safe-area-inset-top);
     }
 
     .cur {
@@ -688,13 +688,13 @@
   }
 
       .mobile-nav {
-        display: block;
-        position: fixed;
-        top: 1rem;
-        left: 1rem;
-        right: 1rem;
-        z-index: 300;
-      }
+  display: block;
+  position: fixed;
+  top: calc(env(safe-area-inset-top) + 1rem);
+  left: 1rem;
+  right: 1rem;
+  z-index: 300;
+}
 
       .mobile-nav-bar {
         width: 100%;
