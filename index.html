@@ -403,11 +403,11 @@
     }
 
     .case-bottom {
-      display: grid;
-      grid-template-columns: 520px minmax(0, 1fr);
-      gap: 2.5rem;
-      align-items: start;
-    }
+  display: grid;
+  grid-template-columns: 620px minmax(0, 1fr);
+  gap: 3.5rem;
+  align-items: start;
+}
 
     .case-thumbs {
       display: flex;
@@ -420,11 +420,12 @@
     }
 
     .case-info {
-      min-width: 0;
-      max-width: 520px;
-      align-self: start;
-      order: 2;
-    }
+  min-width: 0;
+  max-width: 520px;
+  align-self: start;
+  order: 2;
+  padding-left: 0.5rem;
+}
 
     .case-title,
     .case-desc,
@@ -597,12 +598,6 @@
   object-fit: cover;
 }
 
-.case-thumb {
-  appearance: none;
-  -webkit-appearance: none;
-  padding: 0;
-}
-
 .case-thumb.active {
   outline: 2px solid var(--ink);
   outline-offset: 0;
@@ -616,11 +611,18 @@
 }
 
 .case-thumb-video-badge {
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  width: 28px;
+  height: 28px;
   color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.case-thumb-video-badge svg {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
     @keyframes fadeUp {
@@ -1181,9 +1183,13 @@ function renderProjectModal(project) {
               .filter(Boolean)
               .map(
                 (thumb, i) => `
-                  <button class="case-thumb" data-type="image" data-full="${thumb}" type="button">
-                    <img src="${thumb}" alt="${project.title} imagen ${i + 1}">
-                  </button>
+                  <button class="case-thumb case-thumb-video active" data-type="video" type="button" aria-label="Ver video">
+  <div class="case-thumb-video-badge">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M8 6.5v11l9-5.5-9-5.5Z" fill="currentColor"></path>
+    </svg>
+  </div>
+</button>
                 `
               )
               .join('')}
