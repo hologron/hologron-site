@@ -131,25 +131,25 @@
     .hero-name em {
       font-style: italic;
     }
-.hero-illustration {
-  position: absolute;
-  top: 4rem;
-  right: 3rem;
 
-  width: min(14vw, 200px); /* 👈 más pequeña en desktop */
-  
-  height: auto;
-  display: block;
-  object-fit: contain;
-  z-index: 1;
-  pointer-events: none;
-}
+    .hero-illustration {
+      position: absolute;
+      top: 4rem;
+      right: 3rem;
+      width: min(14vw, 200px);
+      height: auto;
+      display: block;
+      object-fit: contain;
+      z-index: 1;
+      pointer-events: none;
+    }
 
-.hero-sub,
-.hero-name {
-  position: relative;
-  z-index: 2;
-}
+    .hero-sub,
+    .hero-name {
+      position: relative;
+      z-index: 2;
+    }
+
     #work {
       padding: 5rem 3.5rem 0;
     }
@@ -191,10 +191,31 @@
       letter-spacing: -0.03em;
       color: var(--muted);
       transition: color 0.25s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .project-title::before {
+      content: "";
+      width: 0.95em;
+      height: 0.78em;
+      display: inline-block;
+      flex: 0 0 auto;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+      transform: translateY(0.02em);
+      opacity: 0.95;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 48'%3E%3Cpath d='M4 14h18l4-6h14c2.2 0 4 1.8 4 4v2h12c2.2 0 4 1.8 4 4v22c0 2.2-1.8 4-4 4H10c-2.2 0-4-1.8-4-4V14z' fill='none' stroke='%239a9590' stroke-width='2.5' stroke-linejoin='round'/%3E%3C/svg%3E");
     }
 
     .project-row:hover .project-title {
       color: var(--ink);
+    }
+
+    .project-row:hover .project-title::before {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 48'%3E%3Cpath d='M4 14h18l4-6h14c2.2 0 4 1.8 4 4v2h12c2.2 0 4 1.8 4 4v22c0 2.2-1.8 4-4 4H10c-2.2 0-4-1.8-4-4V14z' fill='none' stroke='%23111010' stroke-width='2.5' stroke-linejoin='round'/%3E%3C/svg%3E");
     }
 
     .project-cats {
@@ -639,12 +660,13 @@
       nav {
         display: none;
       }
-.hero-illustration {
-  top: 5.5rem;
-  right: 1.5rem;
 
-  width: 70px; /* 👈 aquí sí la bajamos heavy */
-}
+      .hero-illustration {
+        top: 5.5rem;
+        right: 1.5rem;
+        width: 70px;
+      }
+
       .mobile-nav {
         display: block;
         position: fixed;
@@ -781,17 +803,16 @@
       }
 
       .modal-close-btn {
-  top: 0.85rem;
-  right: 0.85rem;
-  width: 52px;
-  height: 52px;
-
-  background: #5f7f63; /* 👈 verde sólido del gradiente */
-  color: #ffffff;      /* 👈 X blanca para contraste */
-
-  border: none;
-  font-size: 1.2rem;
-}
+        top: 0.85rem;
+        right: 0.85rem;
+        width: 52px;
+        height: 52px;
+        background: #5f7f63;
+        color: #ffffff;
+        border: none;
+        font-size: 1.2rem;
+      }
+    }
 
     @media (hover: none), (pointer: coarse) {
       .cur {
@@ -805,35 +826,6 @@
         cursor: auto;
       }
     }
-    .project-title {
-  font-size: clamp(1.3rem, 2.5vw, 2.2rem);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  color: var(--muted);
-  transition: color 0.25s;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-}
-
-.project-title::before {
-  content: "";
-  width: 0.95em;
-  height: 0.78em;
-  display: inline-block;
-  flex: 0 0 auto;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  transform: translateY(0.02em);
-  opacity: 0.95;
-
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 48'%3E%3Cpath d='M4 14h18l4-6h14c2.2 0 4 1.8 4 4v2h12c2.2 0 4 1.8 4 4v22c0 2.2-1.8 4-4 4H10c-2.2 0-4-1.8-4-4V14z' fill='none' stroke='%239a9590' stroke-width='2.5' stroke-linejoin='round'/%3E%3C/svg%3E");
-}
-
-.project-row:hover .project-title::before {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 48'%3E%3Cpath d='M4 14h18l4-6h14c2.2 0 4 1.8 4 4v2h12c2.2 0 4 1.8 4 4v22c0 2.2-1.8 4-4 4H10c-2.2 0-4-1.8-4-4V14z' fill='none' stroke='%23111010' stroke-width='2.5' stroke-linejoin='round'/%3E%3C/svg%3E");
-}
   </style>
 </head>
 <body>
@@ -895,19 +887,19 @@
 
     <div>
       <a href="#" class="project-row" data-pc="pc1" data-project="proj1">
-        <span class="project-title">/Home Tank</span>
+        <span class="project-title">Home Tank</span>
         <span class="project-cats">Product Design</span>
         <span class="project-type">Rotoplas</span>
       </a>
 
       <a href="#" class="project-row" data-pc="pc2" data-project="proj2">
-        <span class="project-title">/Sky Clans</span>
+        <span class="project-title">Sky Clans</span>
         <span class="project-cats">Experiential & Immersive</span>
         <span class="project-type">Clash of Clans</span>
       </a>
 
       <a href="#" class="project-row" data-pc="pc3" data-project="proj3">
-        <span class="project-title">/Airbnb Parking</span>
+        <span class="project-title">Airbnb Parking</span>
         <span class="project-cats">Creative E-Commerce</span>
         <span class="project-type">Airbnb</span>
       </a>
@@ -973,8 +965,8 @@
 
     document.addEventListener('mousemove', e => {
       if (active) {
-        active.style.left = e.clientX + 28 + 'px';
-        active.style.top = e.clientY - 55 + 'px';
+        active.style.left = (e.clientX + 28) + 'px';
+        active.style.top = (e.clientY - 55) + 'px';
       }
     });
 
@@ -1109,11 +1101,6 @@
             </div>
 
             <div class="case-bottom">
-              <div class="case-info">
-                <h2 class="case-title">/${project.title}</h2>
-                <p class="case-desc">${project.description}</p>
-              </div>
-
               <div class="case-thumbs">
                 ${[project.thumb1, project.thumb2, project.thumb3]
                   .filter(Boolean)
@@ -1125,6 +1112,11 @@
                     `
                   )
                   .join('')}
+              </div>
+
+              <div class="case-info">
+                <h2 class="case-title">/${project.title}</h2>
+                <p class="case-desc">${project.description}</p>
               </div>
             </div>
           </div>
