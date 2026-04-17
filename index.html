@@ -368,15 +368,15 @@
     }
 
     .case-bottom {
-      display: grid;
-      grid-template-columns: 1.1fr 1fr;
-      gap: 2rem;
-      align-items: start;
-    }
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 2rem;
+  align-items: start;
+}
 
     .case-info {
-      padding-top: 0.3rem;
-    }
+  order: 2;
+}
 
     .case-title {
       font-size: clamp(2.5rem, 5vw, 5rem);
@@ -397,12 +397,9 @@
     }
 
     .case-thumbs {
-      display: flex;
-      justify-content: flex-end;
-      gap: 1rem;
-      width: 100%;
-      flex-wrap: nowrap;
-    }
+  justify-content: flex-start;
+  gap: 1.2rem;
+}
 
     .case-thumb {
       width: 200px;
