@@ -133,9 +133,11 @@
     }
 .hero-illustration {
   position: absolute;
-  top: 3.8rem;
-  right: 2.8rem;
-  width: 230px;
+  top: 4rem;
+  right: 3rem;
+
+  width: min(14vw, 200px); /* 👈 más pequeña en desktop */
+  
   height: auto;
   display: block;
   object-fit: contain;
@@ -637,10 +639,11 @@
       nav {
         display: none;
       }
-hero-illustration {
+.hero-illustration {
   top: 5.5rem;
   right: 1.5rem;
-  width: 120px;
+
+  width: 70px; /* 👈 aquí sí la bajamos heavy */
 }
       .mobile-nav {
         display: block;
