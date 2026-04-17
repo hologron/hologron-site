@@ -369,14 +369,15 @@
 
     .case-bottom {
   display: grid;
-  grid-template-columns: 320px 1fr;
+  grid-template-columns: 560px minmax(0, 1fr);
   gap: 2.5rem;
   align-items: start;
 }
 
     .case-info {
-      max-width: 520px;
-  order: 2;
+  min-width: 0;
+  max-width: 520px;
+  align-self: start;
 }
 
     .case-title {
@@ -403,18 +404,19 @@
   justify-content: flex-start;
   gap: 1rem;
   flex-wrap: nowrap;
+  min-width: 0;
 }
 
     .case-thumb {
-      width: 200px;
-      flex: 0 0 200px;
-      background: #111;
-      border-radius: 18px;
-      overflow: hidden;
-      cursor: pointer;
-      border: 1px solid rgba(17, 16, 16, 0.08);
-      transition: transform 0.2s ease, opacity 0.2s ease;
-    }
+  width: 180px;
+  flex: 0 0 180px;
+  background: #111;
+  border-radius: 18px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid rgba(17, 16, 16, 0.08);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
 
     .case-thumb:hover {
       transform: translateY(-2px);
@@ -422,11 +424,11 @@
     }
 
     .case-thumb img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      display: block;
-    }
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
 
     .case-awards {
       position: sticky;
