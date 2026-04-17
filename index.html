@@ -689,22 +689,17 @@
 }
 
       .case-info {
-        order: 2;
-        max-width: 100%;
-        min-width: 0;
-      }
+  order: 2;
+  max-width: 100%;
+  min-width: 0;
+  margin-left: 0;
+  text-align: left; /* 👈 ESTO */
+}
 
-      .case-title {
-        font-size: 2.5rem;
-        line-height: 0.95;
-      }
-
-      .case-desc {
-        font-size: 1rem;
-        max-width: 100%;
-        word-break: normal;
-        overflow-wrap: break-word;
-      }
+      .case-title,
+.case-desc {
+  text-align: left; /* 👈 ESTO TAMBIÉN */
+}
 
       .case-thumb {
   width: 120px;
