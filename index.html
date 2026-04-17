@@ -415,9 +415,10 @@
   flex-direction: row;
   gap: 1rem;
   flex-wrap: nowrap;
-  overflow-x: auto; /* 👈 clave */
-  overflow-y: hidden;
+  overflow-x: auto;
+  overflow-y: visible;
   scrollbar-width: none;
+  padding: 0.2rem 0.35rem 0.35rem;
 }
 
 .case-thumbs::-webkit-scrollbar {
@@ -600,11 +601,6 @@
   display: block;
   aspect-ratio: 16 / 9;
   object-fit: cover;
-}
-
-.case-thumb.active {
-  outline: 2px solid var(--ink);
-  outline-offset: 0;
 }
 .case-thumb-image {
   background: transparent;
