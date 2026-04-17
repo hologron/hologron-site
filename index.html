@@ -131,7 +131,23 @@
     .hero-name em {
       font-style: italic;
     }
+.hero-illustration {
+  position: absolute;
+  top: 3.8rem;
+  right: 2.8rem;
+  width: 230px;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  z-index: 1;
+  pointer-events: none;
+}
 
+.hero-sub,
+.hero-name {
+  position: relative;
+  z-index: 2;
+}
     #work {
       padding: 5rem 3.5rem 0;
     }
@@ -621,7 +637,11 @@
       nav {
         display: none;
       }
-
+hero-illustration {
+  top: 5.5rem;
+  right: 1.5rem;
+  width: 120px;
+}
       .mobile-nav {
         display: block;
         position: fixed;
@@ -829,6 +849,7 @@
   </div>
 
   <section class="hero" id="hey">
+    <img src="./assets/illustration.jpg" alt="Ilustración de Leonel" class="hero-illustration">
     <p class="hero-sub">Creative, <br /> Guatemalan.</p>
     <h1 class="hero-name">Leonel <em>Alvarado</em></h1>
   </section>
