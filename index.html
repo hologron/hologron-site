@@ -454,27 +454,28 @@
     }
 
     .case-thumb {
-      width: 150px;
-      flex: 0 0 150px;
-      background: #111;
-      border-radius: 18px;
-      overflow: hidden;
-      cursor: pointer;
-      border: 1px solid rgba(17, 16, 16, 0.08);
-      transition: transform 0.2s ease, opacity 0.2s ease;
-    }
+  width: 150px;
+  height: 150px;
+  flex: 0 0 150px;
+  appearance: none;
+  -webkit-appearance: none;
+  padding: 0;
+  border-radius: 18px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid rgba(17, 16, 16, 0.08);
+  transition: transform 0.2s ease, opacity 0.2s ease, outline 0.2s ease;
+  background: #111;
+}
 
-    .case-thumb:hover {
-      transform: translateY(-2px);
-      opacity: 0.95;
-    }
-
-    .case-thumb img {
-      width: 100%;
-      height: 150px;
-      object-fit: cover;
-      display: block;
-    }
+.case-thumb:hover {
+  transform: translateY(-2px);
+  opacity: 0.95;
+}
+.case-thumb.active {
+  outline: 2px solid var(--ink);
+  outline-offset: 0;
+}
 
     .case-awards {
       position: sticky;
@@ -602,7 +603,16 @@
   outline: 2px solid var(--ink);
   outline-offset: 0;
 }
+.case-thumb-image {
+  background: #111;
+}
 
+.case-thumb-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 .case-thumb-video {
   display: flex;
   align-items: center;
@@ -1175,25 +1185,25 @@ function renderProjectModal(project) {
 
         <div class="case-bottom">
           <div class="case-thumbs">
-            <button class="case-thumb case-thumb-video active" data-type="video" type="button">
-              <div class="case-thumb-video-badge">VIDEO</div>
-            </button>
+  <button class="case-thumb case-thumb-video active" data-type="video" type="button" aria-label="Ver video">
+    <div class="case-thumb-video-badge">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M8 6.5v11l9-5.5-9-5.5Z" fill="currentColor"></path>
+      </svg>
+    </div>
+  </button>
 
-            ${[project.thumb1, project.thumb2, project.thumb3]
-              .filter(Boolean)
-              .map(
-                (thumb, i) => `
-                  <button class="case-thumb case-thumb-video active" data-type="video" type="button" aria-label="Ver video">
-  <div class="case-thumb-video-badge">
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M8 6.5v11l9-5.5-9-5.5Z" fill="currentColor"></path>
-    </svg>
-  </div>
-</button>
-                `
-              )
-              .join('')}
-          </div>
+  ${[project.thumb1, project.thumb2, project.thumb3]
+    .filter(Boolean)
+    .map(
+      (thumb, i) => `
+        <button class="case-thumb case-thumb-image" data-type="image" data-full="${thumb}" type="button" aria-label="${project.title} imagen ${i + 1}">
+          <img src="${thumb}" alt="${project.title} imagen ${i + 1}">
+        </button>
+      `
+    )
+    .join('')}
+</div>
 
           <div class="case-info">
             <h2 class="case-title">/${project.title}</h2>
