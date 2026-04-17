@@ -577,6 +577,52 @@
   color: var(--muted);
   letter-spacing: 0.02em;
 }
+.case-thumb {
+  width: 150px;
+  flex: 0 0 150px;
+  background: #111;
+  border-radius: 18px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid rgba(17, 16, 16, 0.08);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* 👇 PEGA TODO ESTO AQUÍ 👇 */
+
+.case-hero img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.case-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  padding: 0;
+}
+
+.case-thumb.active {
+  outline: 2px solid var(--ink);
+  outline-offset: 0;
+}
+
+.case-thumb-video {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #d8d2c7;
+}
+
+.case-thumb-video-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
     @keyframes fadeUp {
       from {
         opacity: 0;
@@ -1084,80 +1130,105 @@
       });
     }
 
-    function renderProjectModal(project) {
-      const isEmbed = project.heroVideo.includes('vimeo.com') || project.heroVideo.includes('youtube.com');
-      const awardsHTML = project.awards && project.awards.length
-        ? `
-          <aside class="case-awards">
-            <div class="case-awards-label">Awards</div>
-            ${project.awards.map(award => `
-              <div class="award-item">
-                ${award.title}
-                ${award.meta ? `<span>${award.meta}</span>` : ''}
-              </div>
-            `).join('')}
-          </aside>
-        `
-        : '';
+function renderProjectModal(project) {
+  const isEmbed = project.heroVideo.includes('vimeo.com') || project.heroVideo.includes('youtube.com');
 
-      modalContent.innerHTML = `
-        <div class="case-layout">
-          <div class="case-main">
-            <div class="case-hero">
-              ${
-                isEmbed
-                  ? `
-                    <iframe
-                      src="${project.heroVideo}"
-                      frameborder="0"
-                      allow="autoplay; fullscreen; picture-in-picture"
-                      allowfullscreen
-                      style="width:100%; aspect-ratio:16/9; display:block;"
-                    ></iframe>
-                  `
-                  : `
-                    <video controls playsinline style="width:100%; display:block;">
-                      <source src="${project.heroVideo}" type="video/mp4">
-                      Tu navegador no soporta video.
-                    </video>
-                  `
-              }
-            </div>
+  const awardsHTML = project.awards && project.awards.length
+    ? `
+      <aside class="case-awards">
+        <div class="case-awards-label">Awards</div>
+        ${project.awards.map(award => `
+          <div class="award-item">
+            ${award.title}
+            ${award.meta ? `<span>${award.meta}</span>` : ''}
+          </div>
+        `).join('')}
+      </aside>
+    `
+    : '';
 
-            <div class="case-bottom">
-              <div class="case-thumbs">
-                ${[project.thumb1, project.thumb2, project.thumb3]
-                  .filter(Boolean)
-                  .map(
-                    (thumb, i) => `
-                      <div class="case-thumb" data-full="${thumb}">
-                        <img src="${thumb}" alt="${project.title} imagen ${i + 1}">
-                      </div>
-                    `
-                  )
-                  .join('')}
-              </div>
+  const videoHTML = isEmbed
+    ? `
+      <iframe
+        src="${project.heroVideo}"
+        frameborder="0"
+        allow="autoplay; fullscreen; picture-in-picture"
+        allowfullscreen
+        style="width:100%; aspect-ratio:16/9; display:block;"
+      ></iframe>
+    `
+    : `
+      <video controls playsinline style="width:100%; display:block;">
+        <source src="${project.heroVideo}" type="video/mp4">
+        Tu navegador no soporta video.
+      </video>
+    `;
 
-              <div class="case-info">
-                <h2 class="case-title">/${project.title}</h2>
-                <p class="case-desc">${project.description}</p>
-              </div>
-            </div>
+  modalContent.innerHTML = `
+    <div class="case-layout">
+      <div class="case-main">
+        <div class="case-hero" id="caseHeroViewer">
+          ${videoHTML}
+        </div>
+
+        <div class="case-bottom">
+          <div class="case-thumbs">
+            <button class="case-thumb case-thumb-video active" data-type="video" type="button">
+              <div class="case-thumb-video-badge">VIDEO</div>
+            </button>
+
+            ${[project.thumb1, project.thumb2, project.thumb3]
+              .filter(Boolean)
+              .map(
+                (thumb, i) => `
+                  <button class="case-thumb" data-type="image" data-full="${thumb}" type="button">
+                    <img src="${thumb}" alt="${project.title} imagen ${i + 1}">
+                  </button>
+                `
+              )
+              .join('')}
           </div>
 
-          ${awardsHTML}
+          <div class="case-info">
+            <h2 class="case-title">/${project.title}</h2>
+            <p class="case-desc">${project.description}</p>
+          </div>
         </div>
-      `;
+      </div>
 
-      modalEl.classList.add('open');
+      ${awardsHTML}
+    </div>
+  `;
 
-      modalContent.querySelectorAll('.case-thumb').forEach(thumb => {
-        thumb.addEventListener('click', () => {
-          lightboxImg.src = thumb.dataset.full;
-          lightbox.classList.add('open');
-        });
-      });
-    }
+  modalEl.classList.add('open');
+
+  const heroViewer = modalContent.querySelector('#caseHeroViewer');
+  const thumbButtons = modalContent.querySelectorAll('.case-thumb');
+
+  thumbButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      thumbButtons.forEach(item => item.classList.remove('active'));
+      btn.classList.add('active');
+
+      const type = btn.dataset.type;
+
+      if (type === 'video') {
+        heroViewer.innerHTML = videoHTML;
+        return;
+      }
+
+      if (type === 'image') {
+        heroViewer.innerHTML = `
+          <img
+            src="${btn.dataset.full}"
+            alt="Imagen ampliada de ${project.title}"
+            style="width:100%; aspect-ratio:16/9; object-fit:cover; display:block;"
+          >
+        `;
+      }
+    });
+  });
+}
 
     document.querySelectorAll('.project-row').forEach(row => {
       row.addEventListener('click', e => {
