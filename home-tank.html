@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Home Tank — Hologron</title>
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐐</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --cream: #f0ece3;
+      --ink: #111010;
+      --muted: #9a9590;
+      --ff: 'Inter', sans-serif;
+    }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: var(--ff);
+      padding: 1.25rem;
+    }
+
+    .project-page {
+      max-width: 1600px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .close-btn {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      width: 52px;
+      height: 52px;
+      border: none;
+      border-radius: 999px;
+      background: #111;
+      color: var(--cream);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      line-height: 1;
+      z-index: 1000;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+    }
+
+    .project-shell {
+      width: min(1600px, 100%);
+      margin: 0 auto;
+      background: var(--cream);
+      border-radius: 28px;
+      padding: 2rem;
+    }
+
+    .project-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 260px;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .project-main {
+      min-width: 0;
+    }
+
+    .project-hero {
+      width: 100%;
+      border-radius: 22px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+
+    .project-hero iframe,
+    .project-hero img {
+      width: 100%;
+      display: block;
+      aspect-ratio: 16 / 9;
+      border: 0;
+    }
+
+    .project-bottom {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .project-thumbs {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+      overflow-y: visible;
+      padding: 0.2rem 0.35rem 0.35rem;
+      scrollbar-width: none;
+    }
+
+    .project-thumbs::-webkit-scrollbar {
+      display: none;
+    }
+
+    .project-thumb {
+      position: relative;
+      width: 150px;
+      height: 150px;
+      flex: 0 0 150px;
+      border: none;
+      border-radius: 18px;
+      overflow: hidden;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .project-thumb::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border: 1px solid rgba(17, 16, 16, 0.14);
+      border-radius: 18px;
+      pointer-events: none;
+    }
+
+    .project-thumb.active::after {
+      border: 2px solid var(--ink);
+    }
+
+    .project-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .project-thumb-video {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #d8d2c7;
+      color: var(--ink);
+      font-size: 2rem;
+    }
+
+    .project-info {
+      margin-left: auto;
+      max-width: 480px;
+      padding-right: 1rem;
+      text-align: right;
+      min-width: 0;
+    }
+
+    .project-title {
+      font-size: clamp(2rem, 4vw, 4rem);
+      line-height: 0.92;
+      letter-spacing: -0.04em;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .project-desc {
+      font-size: 0.95rem;
+      line-height: 1.35;
+      font-weight: 300;
+      opacity: 0.8;
+    }
+
+    .project-awards {
+      position: sticky;
+      top: 1.5rem;
+      align-self: start;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      padding-top: 0.25rem;
+    }
+
+    .project-awards-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.3rem;
+    }
+
+    .award-item {
+      border-left: 2px solid rgba(17, 16, 16, 0.18);
+      padding-left: 0.8rem;
+      font-size: 0.78rem;
+      line-height: 1.35;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+    }
+
+    .award-item span {
+      display: block;
+      font-size: 0.72rem;
+      color: var(--muted);
+      font-weight: 500;
+      margin-top: 0.15rem;
+    }
+
+    @media (max-width: 1100px) {
+      .project-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .project-awards {
+        position: static;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .project-shell {
+        padding: 1rem;
+        border-radius: 20px;
+      }
+
+      .project-bottom {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+      }
+
+      .project-info {
+        margin-left: 0;
+        max-width: 100%;
+        padding-right: 0;
+        text-align: left;
+      }
+
+      .project-thumb {
+        width: 120px;
+        height: 120px;
+        flex: 0 0 120px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 0.75rem;
+      }
+
+      .close-btn {
+        top: 0.85rem;
+        right: 0.85rem;
+        width: 52px;
+        height: 52px;
+        background: #5f7f63;
+        color: #fff;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="index.html#work" class="close-btn" aria-label="Volver al home">✕</a>
+
+  <main class="project-page">
+    <div class="project-shell">
+      <div class="project-layout">
+        <div class="project-main">
+          <div class="project-hero" id="heroViewer">
+            <iframe
+              src="https://player.vimeo.com/video/1164039633"
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowfullscreen>
+            </iframe>
+          </div>
+
+          <div class="project-bottom">
+            <div class="project-thumbs">
+              <button class="project-thumb project-thumb-video active" data-type="video" type="button" aria-label="Ver video">▶</button>
+
+              <button class="project-thumb" data-type="image" data-full="./assets/proyecto1/test.jpg" type="button">
+                <img src="./assets/proyecto1/test.jpg" alt="Home Tank imagen 1">
+              </button>
+
+              <button class="project-thumb" data-type="image" data-full="./assets/proyecto1/test02.jpg" type="button">
+                <img src="./assets/proyecto1/test02.jpg" alt="Home Tank imagen 2">
+              </button>
+
+              <button class="project-thumb" data-type="image" data-full="./assets/proyecto1/home03.jpg" type="button">
+                <img src="./assets/proyecto1/home03.jpg" alt="Home Tank imagen 3">
+              </button>
+            </div>
+
+            <div class="project-info">
+              <h1 class="project-title">/Home Tank</h1>
+              <p class="project-desc">
+                Home Tank turns a traditional water tank into two things at once: a source of water for the household and a built-in shelter for dogs.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <aside class="project-awards">
+          <div class="project-awards-label">Awards</div>
+
+          <div class="award-item">
+            The Clios Awards
+            <span>Shortlist</span>
+          </div>
+
+          <div class="award-item">
+            Young Ones ADC
+            <span>Shortlist</span>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const heroViewer = document.getElementById('heroViewer');
+
+    const videoHTML = `
+      <iframe
+        src="https://player.vimeo.com/video/1164039633"
+        allow="autoplay; fullscreen; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    `;
+
+    const thumbButtons = document.querySelectorAll('.project-thumb');
+
+    thumbButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        thumbButtons.forEach(item => item.classList.remove('active'));
+        btn.classList.add('active');
+
+        const type = btn.dataset.type;
+
+        if (type === 'video') {
+          heroViewer.innerHTML = videoHTML;
+          return;
+        }
+
+        if (type === 'image') {
+          heroViewer.innerHTML = `
+            <img src="${btn.dataset.full}" alt="Home Tank imagen ampliada">
+          `;
+        }
+      });
+    });
+  </script>
+</body>
+</html>
