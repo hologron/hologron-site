@@ -2,7 +2,8 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />  <title>Hologron</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Hologron</title>
 
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐐</text></svg>">
 
@@ -197,22 +198,22 @@
     }
 
     .project-title::before {
-  content: "";
-  width: 1em;
-  height: 0.86em;
-  display: inline-block;
-  flex: 0 0 auto;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  transform: translateY(0.01em);
-  opacity: 0.95;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 52'%3E%3Cpath d='M6 16c0-2.2 1.8-4 4-4h12l3-5h14c2.2 0 4 1.8 4 4v1h11c2.2 0 4 1.8 4 4v28c0 2.2-1.8 4-4 4H10c-2.2 0-4-1.8-4-4V16z' fill='none' stroke='%239a9590' stroke-width='2.8' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E");
-}
+      content: "";
+      width: 1em;
+      height: 0.86em;
+      display: inline-block;
+      flex: 0 0 auto;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+      transform: translateY(0.01em);
+      opacity: 0.95;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 52'%3E%3Cpath d='M6 16c0-2.2 1.8-4 4-4h12l3-5h14c2.2 0 4 1.8 4 4v1h11c2.2 0 4 1.8 4 4v28c0 2.2-1.8 4-4 4H10c-2.2 0-4-1.8-4-4V16z' fill='none' stroke='%239a9590' stroke-width='2.8' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E");
+    }
 
-.project-row:hover .project-title::before {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 52'%3E%3Cpath d='M6 16c0-2.2 1.8-4 4-4h12l3-5h14c2.2 0 4 1.8 4 4v1h11c2.2 0 4 1.8 4 4v28c0 2.2-1.8 4-4 4H10c-2.2 0-4-1.8-4-4V16z' fill='none' stroke='%23111010' stroke-width='2.8' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E");
-}
+    .project-row:hover .project-title::before {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 52'%3E%3Cpath d='M6 16c0-2.2 1.8-4 4-4h12l3-5h14c2.2 0 4 1.8 4 4v1h11c2.2 0 4 1.8 4 4v28c0 2.2-1.8 4-4 4H10c-2.2 0-4-1.8-4-4V16z' fill='none' stroke='%23111010' stroke-width='2.8' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E");
+    }
 
     .project-cats {
       font-size: 0.82rem;
@@ -352,287 +353,25 @@
       color: var(--muted);
     }
 
-    .modal-shell {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.45);
-      display: none;
-      align-items: flex-start;
-      justify-content: center;
-      z-index: 999;
-      overflow-y: auto;
-      padding: 2rem;
-    }
-
-    .modal-shell.open {
-      display: flex;
-    }
-
-    .modal-case {
-      width: min(1600px, 100%);
-      background: var(--cream);
-      border-radius: 28px;
-      padding: 2rem;
-    }
-
-    .case-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 260px;
-      gap: 2rem;
-      align-items: start;
-    }
-
-    .case-main {
-      min-width: 0;
-    }
-
-    .case-hero {
-      width: 100%;
-      border-radius: 22px;
-      overflow: hidden;
-      background: transparent;
-      margin-bottom: 1.5rem;
-    }
-
-    .case-hero video,
-    .case-hero img,
-    .case-hero iframe {
-      width: 100%;
-      display: block;
-      max-height: 78vh;
-    }
-
-    .case-bottom {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 3rem;
-  align-items: start;
-}
-
-    .case-thumbs {
-  max-width: 100%;
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  overflow-y: visible;
-  scrollbar-width: none;
-  padding: 0.2rem 0.35rem 0.35rem;
-}
-
-.case-thumbs::-webkit-scrollbar {
-  display: none;
-}
-
-    .case-info {
-  margin-left: auto;
-  max-width: 480px;
-  padding-right: 1rem;
-  text-align: right;
-  min-width: 0;
-}
-
-    .case-title,
-.case-desc {
-  text-align: right;
-}
-
-    .case-title {
-      font-size: clamp(1.8rem, 3.5vw, 3.5rem);
-      line-height: 0.92;
-      letter-spacing: -0.04em;
-      font-weight: 700;
-      margin-bottom: 1rem;
-    }
-
-    .case-desc {
-      font-size: 0.92rem;
-      line-height: 1.35;
-      color: var(--ink);
-      max-width: 520px;
-      font-weight: 300;
-      opacity: 0.8;
-      letter-spacing: 0.01em;
-      overflow-wrap: break-word;
-      word-break: normal;
-    }
-
-    .case-thumb {
-  position: relative;
-  width: 150px;
-  height: 150px;
-  flex: 0 0 150px;
-  appearance: none;
-  -webkit-appearance: none;
-  padding: 0;
-  border: none;
-  border-radius: 18px;
-  overflow: hidden;
-  cursor: pointer;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-  background: transparent;
-}
-.case-thumb::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border: 1px solid rgba(17, 16, 16, 0.14);
-  border-radius: 18px;
-  pointer-events: none;
-}
-
-.case-thumb.active::after {
-  border: 2px solid var(--ink);
-}
-
-.case-thumb:hover {
-  transform: translateY(-2px);
-  opacity: 0.95;
-}
-
-    .case-awards {
-      position: sticky;
-      top: 1.5rem;
-      align-self: start;
+    .dog-block {
+      margin-bottom: 2.5rem;
       display: flex;
       flex-direction: column;
-      gap: 0.85rem;
-      padding-top: 0.25rem;
+      align-items: flex-start;
+      gap: 0.4rem;
     }
 
-    .case-awards-label {
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
+    .dog-img {
+      width: 90px;
+      height: auto;
+      image-rendering: pixelated;
+    }
+
+    .dog-caption {
+      font-size: 0.7rem;
       color: var(--muted);
-      margin-bottom: 0.3rem;
-    }
-
-    .award-item {
-      border-left: 2px solid rgba(17, 16, 16, 0.18);
-      padding-left: 0.8rem;
-      font-size: 0.78rem;
-      line-height: 1.35;
-      font-weight: 600;
-      letter-spacing: 0.03em;
-      color: var(--ink);
-    }
-
-    .award-item span {
-      display: block;
-      font-size: 0.72rem;
-      color: var(--muted);
-      font-weight: 500;
       letter-spacing: 0.02em;
-      margin-top: 0.15rem;
     }
-
-    .lightbox {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.82);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 1200;
-      padding: 2rem;
-    }
-
-    .lightbox.open {
-      display: flex;
-    }
-
-    .lightbox img {
-      max-width: 92vw;
-      max-height: 88vh;
-      border-radius: 20px;
-      display: block;
-    }
-
-    .modal-close-btn {
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
-      width: 46px;
-      height: 46px;
-      border: none;
-      border-radius: 999px;
-      background: #111;
-      color: var(--cream);
-      font-size: 1.1rem;
-      line-height: 1;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 1100;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.18);
-    }
-
-    .modal-shell.open .modal-close-btn {
-      display: inline-flex;
-    }
-.dog-block {
-  margin-bottom: 2.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.4rem;
-}
-
-.dog-img {
-  width: 90px; /* desktop pequeño */
-  height: auto;
-  image-rendering: pixelated; /* 👈 si es pixel art, queda brutal */
-}
-
-.dog-caption {
-  font-size: 0.7rem;
-  color: var(--muted);
-  letter-spacing: 0.02em;
-}
-
-/* 👇 PEGA TODO ESTO AQUÍ 👇 */
-
-.case-hero img {
-  width: 100%;
-  display: block;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-}
-.case-thumb-image {
-  background: transparent;
-}
-
-.case-thumb-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-.case-thumb-video {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #d8d2c7;
-}
-
-.case-thumb-video-badge {
-  width: 28px;
-  height: 28px;
-  color: var(--ink);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.case-thumb-video-badge svg {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
 
     @keyframes fadeUp {
       from {
@@ -645,111 +384,33 @@
       }
     }
 
-    @media (max-width: 1100px) {
-      .case-layout {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-      }
-
-      .case-awards {
-        position: static;
-        order: 2;
-        margin-top: 0;
-      }
-    }
-
-    @media (max-width: 900px) {
-      .modal-shell {
-        padding: 0.75rem;
-      }
-
-      .modal-case {
-        padding: 1rem;
-        border-radius: 20px;
-      }
-
-      .case-layout {
-        grid-template-columns: 1fr;
-        gap: 1.25rem;
-      }
-
-      .case-awards {
-        position: static;
-        order: 2;
-        margin-top: 0;
-      }
-
-      .case-bottom {
-        grid-template-columns: 1fr;
-        gap: 1.25rem;
-      }
-
-      .case-thumbs {
-  order: 1;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  gap: 0.75rem;
-  overflow-x: auto;
-   overflow-y: visible;
-  padding: 0.2rem 0.25rem 0.35rem;
-}
-
-      .case-info {
-  order: 2;
-  max-width: 100%;
-  min-width: 0;
-  margin-left: 0;
-  text-align: left; /* 👈 ESTO */
-}
-
-      .case-title,
-.case-desc {
-  text-align: left; /* 👈 ESTO TAMBIÉN */
-}
-
-      .case-thumb {
-  width: 120px;
-  height: 120px;
-  flex: 0 0 120px;
-  background: transparent !important;
-  border-radius: 18px;
-  overflow: hidden;
-}
-
-      .case-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-}
-
     @media (max-width: 768px) {
       nav {
         display: none;
       }
-.dog-img {
-  width: 60px; /* más pequeño en mobile */
-}
 
-.dog-caption {
-  font-size: 0.65rem;
-}
+      .dog-img {
+        width: 60px;
+      }
+
+      .dog-caption {
+        font-size: 0.65rem;
+      }
+
       .hero-illustration {
-    top: 8rem; /* 👈 lo bajamos más */
-    right: 1.5rem;
-    width: 70px;
-  }
+        top: 8rem;
+        right: 1.5rem;
+        width: 70px;
+      }
 
       .mobile-nav {
-  display: block;
-  position: fixed;
-  top: calc(env(safe-area-inset-top) + 1rem);
-  left: 1rem;
-  right: 1rem;
-  z-index: 300;
-}
+        display: block;
+        position: fixed;
+        top: calc(env(safe-area-inset-top) + 1rem);
+        left: 1rem;
+        right: 1rem;
+        z-index: 300;
+      }
 
       .mobile-nav-bar {
         width: 100%;
@@ -876,19 +537,7 @@
         flex-direction: column;
         gap: 0.5rem;
       }
-
-      .modal-close-btn {
-        top: 0.85rem;
-        right: 0.85rem;
-        width: 52px;
-        height: 52px;
-        background: #5f7f63;
-        color: #ffffff;
-        border: none;
-        font-size: 1.2rem;
-      }
     }
-    
 
     @media (hover: none), (pointer: coarse) {
       .cur {
@@ -944,8 +593,8 @@
 
       <div class="mobile-submenu" id="mobileWorkSubmenu">
         <a href="home-tank.html" class="mobile-sublink">Home Tank</a>
-<a href="sky-clans.html" class="mobile-sublink">Sky Clans</a>
-<a href="airbnb-parking.html" class="mobile-sublink">Airbnb Parking</a>
+        <a href="sky-clans.html" class="mobile-sublink">Sky Clans</a>
+        <a href="airbnb-parking.html" class="mobile-sublink">Airbnb Parking</a>
       </div>
 
       <a href="#contacto" class="mobile-link">Chat</a>
@@ -960,28 +609,29 @@
 
   <section id="work">
     <h2 class="work-heading">little work,<br /><em>but always honest®</em></h2>
-<div class="dog-block">
-  <img src="./assets/dog.jpg" alt="Toffu" class="dog-img">
-  <p class="dog-caption">Everything was validated by my dog Toffu.</p>
-</div>
+    <div class="dog-block">
+      <img src="./assets/dog.jpg" alt="Toffu" class="dog-img">
+      <p class="dog-caption">Everything was validated by my dog Toffu.</p>
+    </div>
+
     <div>
       <a href="home-tank.html" class="project-row" data-pc="pc1">
-  <span class="project-title">Home Tank</span>
-  <span class="project-cats">Product Design</span>
-  <span class="project-type">Rotoplas</span>
-</a>
+        <span class="project-title">Home Tank</span>
+        <span class="project-cats">Product Design</span>
+        <span class="project-type">Rotoplas</span>
+      </a>
 
-<a href="sky-clans.html" class="project-row" data-pc="pc2">
-  <span class="project-title">Sky Clans</span>
-  <span class="project-cats">Experiential & Immersive</span>
-  <span class="project-type">Clash of Clans</span>
-</a>
+      <a href="sky-clans.html" class="project-row" data-pc="pc2">
+        <span class="project-title">Sky Clans</span>
+        <span class="project-cats">Experiential & Immersive</span>
+        <span class="project-type">Clash of Clans</span>
+      </a>
 
-<a href="airbnb-parking.html" class="project-row" data-pc="pc3">
-  <span class="project-title">Airbnb Parking</span>
-  <span class="project-cats">Creative E-Commerce</span>
-  <span class="project-type">Airbnb</span>
-</a>
+      <a href="airbnb-parking.html" class="project-row" data-pc="pc3">
+        <span class="project-title">Airbnb Parking</span>
+        <span class="project-cats">Creative E-Commerce</span>
+        <span class="project-type">Airbnb</span>
+      </a>
     </div>
   </section>
 
@@ -1075,145 +725,6 @@
       }, { threshold: 0.4 }).observe(s);
     });
 
-    const modalEl = document.getElementById('modal');
-    const modalContent = document.getElementById('modalContent');
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightboxImg');
-    const modalCloseBtn = document.getElementById('modalCloseBtn');
-
-    if (modalCloseBtn) {
-      modalCloseBtn.addEventListener('click', () => {
-        modalEl.classList.remove('open');
-      });
-    }
-
-function renderProjectModal(project) {
-  const isEmbed = project.heroVideo.includes('vimeo.com') || project.heroVideo.includes('youtube.com');
-
-  const awardsHTML = project.awards && project.awards.length
-    ? `
-      <aside class="case-awards">
-        <div class="case-awards-label">Awards</div>
-        ${project.awards.map(award => `
-          <div class="award-item">
-            ${award.title}
-            ${award.meta ? `<span>${award.meta}</span>` : ''}
-          </div>
-        `).join('')}
-      </aside>
-    `
-    : '';
-
-  const videoHTML = isEmbed
-    ? `
-      <iframe
-        src="${project.heroVideo}"
-        frameborder="0"
-        allow="autoplay; fullscreen; picture-in-picture"
-        allowfullscreen
-        style="width:100%; aspect-ratio:16/9; display:block;"
-      ></iframe>
-    `
-    : `
-      <video controls playsinline style="width:100%; display:block;">
-        <source src="${project.heroVideo}" type="video/mp4">
-        Tu navegador no soporta video.
-      </video>
-    `;
-
-  modalContent.innerHTML = `
-    <div class="case-layout">
-      <div class="case-main">
-        <div class="case-hero" id="caseHeroViewer">
-          ${videoHTML}
-        </div>
-
-        <div class="case-bottom">
-          <div class="case-thumbs">
-  <button class="case-thumb case-thumb-video active" data-type="video" type="button" aria-label="Ver video">
-    <div class="case-thumb-video-badge">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M8 6.5v11l9-5.5-9-5.5Z" fill="currentColor"></path>
-      </svg>
-    </div>
-  </button>
-
-  ${[project.thumb1, project.thumb2, project.thumb3]
-    .filter(Boolean)
-    .map(
-      (thumb, i) => `
-        <button class="case-thumb case-thumb-image" data-type="image" data-full="${thumb}" type="button" aria-label="${project.title} imagen ${i + 1}">
-          <img src="${thumb}" alt="${project.title} imagen ${i + 1}">
-        </button>
-      `
-    )
-    .join('')}
-</div>
-
-          <div class="case-info">
-            <h2 class="case-title">/${project.title}</h2>
-            <p class="case-desc">${project.description}</p>
-          </div>
-        </div>
-      </div>
-
-      ${awardsHTML}
-    </div>
-  `;
-
-  modalEl.classList.add('open');
-
-  const heroViewer = modalContent.querySelector('#caseHeroViewer');
-  const thumbButtons = modalContent.querySelectorAll('.case-thumb');
-
-  thumbButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      thumbButtons.forEach(item => item.classList.remove('active'));
-      btn.classList.add('active');
-
-      const type = btn.dataset.type;
-
-      if (type === 'video') {
-        heroViewer.innerHTML = videoHTML;
-        return;
-      }
-
-      if (type === 'image') {
-        heroViewer.innerHTML = `
-          <img
-            src="${btn.dataset.full}"
-            alt="Imagen ampliada de ${project.title}"
-            style="width:100%; aspect-ratio:16/9; object-fit:cover; display:block;"
-          >
-        `;
-      }
-    });
-  });
-}
-
-    modalEl.addEventListener('click', e => {
-      if (e.target === modalEl) {
-        modalEl.classList.remove('open');
-      }
-    });
-
-    lightbox.addEventListener('click', () => {
-      lightbox.classList.remove('open');
-      lightboxImg.src = '';
-    });
-
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape' && lightbox.classList.contains('open')) {
-        lightbox.classList.remove('open');
-        lightboxImg.src = '';
-        return;
-      }
-
-      if (e.key === 'Escape' && modalEl.classList.contains('open')) {
-        modalEl.classList.remove('open');
-      }
-    });
-
     const mobileMenuToggle = document.getElementById('mobileMenuToggle');
     const mobileMenuPanel = document.getElementById('mobileMenuPanel');
     const mobileMenuIcon = document.getElementById('mobileMenuIcon');
@@ -1244,13 +755,13 @@ function renderProjectModal(project) {
     });
 
     document.querySelectorAll('.mobile-sublink').forEach(link => {
-  link.addEventListener('click', () => {
-    mobileMenuPanel.classList.remove('open');
-    mobileWorkSubmenu.classList.remove('open');
-    mobileMenuIcon.textContent = '☰';
-    mobileWorkIcon.textContent = '+';
-  });
-});
+      link.addEventListener('click', () => {
+        mobileMenuPanel.classList.remove('open');
+        mobileWorkSubmenu.classList.remove('open');
+        mobileMenuIcon.textContent = '☰';
+        mobileWorkIcon.textContent = '+';
+      });
+    });
   </script>
 </body>
 </html>
