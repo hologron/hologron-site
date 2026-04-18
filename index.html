@@ -943,9 +943,9 @@
       </button>
 
       <div class="mobile-submenu" id="mobileWorkSubmenu">
-        <a href="#" class="mobile-sublink" data-project="proj1">Home Tank</a>
-        <a href="#" class="mobile-sublink" data-project="proj2">Sky Clans</a>
-        <a href="#" class="mobile-sublink" data-project="proj3">Airbnb Parking</a>
+        <a href="home-tank.html" class="mobile-sublink">Home Tank</a>
+<a href="sky-clans.html" class="mobile-sublink">Sky Clans</a>
+<a href="airbnb-parking.html" class="mobile-sublink">Airbnb Parking</a>
       </div>
 
       <a href="#contacto" class="mobile-link">Chat</a>
@@ -965,23 +965,23 @@
   <p class="dog-caption">Everything was validated by my dog Toffu.</p>
 </div>
     <div>
-      <a href="#" class="project-row" data-pc="pc1" data-project="proj1">
-        <span class="project-title">Home Tank</span>
-        <span class="project-cats">Product Design</span>
-        <span class="project-type">Rotoplas</span>
-      </a>
+      <a href="home-tank.html" class="project-row" data-pc="pc1">
+  <span class="project-title">Home Tank</span>
+  <span class="project-cats">Product Design</span>
+  <span class="project-type">Rotoplas</span>
+</a>
 
-      <a href="#" class="project-row" data-pc="pc2" data-project="proj2">
-        <span class="project-title">Sky Clans</span>
-        <span class="project-cats">Experiential & Immersive</span>
-        <span class="project-type">Clash of Clans</span>
-      </a>
+<a href="sky-clans.html" class="project-row" data-pc="pc2">
+  <span class="project-title">Sky Clans</span>
+  <span class="project-cats">Experiential & Immersive</span>
+  <span class="project-type">Clash of Clans</span>
+</a>
 
-      <a href="#" class="project-row" data-pc="pc3" data-project="proj3">
-        <span class="project-title">Airbnb Parking</span>
-        <span class="project-cats">Creative E-Commerce</span>
-        <span class="project-type">Airbnb</span>
-      </a>
+<a href="airbnb-parking.html" class="project-row" data-pc="pc3">
+  <span class="project-title">Airbnb Parking</span>
+  <span class="project-cats">Creative E-Commerce</span>
+  <span class="project-type">Airbnb</span>
+</a>
     </div>
   </section>
 
@@ -1074,58 +1074,6 @@
         });
       }, { threshold: 0.4 }).observe(s);
     });
-
-    const projectData = {
-      proj1: {
-        title: 'Home Tank',
-        description: 'Home Tank turns a traditional water tank into two things at once: a source of water for the household and a built-in shelter for dogs.',
-        heroVideo: 'https://player.vimeo.com/video/1164039633',
-        thumb1: './assets/proyecto1/test.jpg',
-        thumb2: './assets/proyecto1/test02.jpg',
-        thumb3: './assets/proyecto1/home03.jpg',
-        awards: [
-          { title: 'The Clios Awards', meta: 'Shortlist' },
-          { title: 'Young Ones ADC', meta: 'Shortlist' }
-        ]
-      },
-
-      proj2: {
-        title: 'Sky Clans',
-        description: 'To celebrate the launch of the new Clash of Clans series on Netflix, we brought one of the game´s most iconic elements into the real world. Real Clash balloons appeared over towns and released barrels containing access to the trailer and exclusive in-game rewards.',
-        heroVideo: 'https://player.vimeo.com/video/1174533014',
-        thumb1: './assets/proyecto2/thumb-1.jpg',
-        thumb2: './assets/proyecto2/thumb-2.jpg',
-        thumb3: '',
-        awards: [
-          { title: 'One Show Young Ones', meta: 'Shortlist' }
-        ]
-      },
-
-      proj3: {
-        title: 'Airbnb Parking',
-        description: 'Airbnb Parking turns unused private home parking spots into a bookable network inside Airbnb. Powered by the same trust system (verified profiles, reviews, secure payments, and support), hosts list their space and drivers reserve it by the hour, day, or month.',
-        heroVideo: 'https://player.vimeo.com/video/1163723561',
-        thumb1: './assets/proyecto3/thumb-1.jpg',
-        thumb2: './assets/proyecto3/thumb-2.jpg',
-        thumb3: '',
-        awards: [
-          { title: 'The Clio Awards', meta: 'Shortlist' }
-        ]
-      }
-    };
-
-    const modal = document.createElement('div');
-    modal.innerHTML = `
-      <div id="modal" class="modal-shell">
-        <button id="modalCloseBtn" class="modal-close-btn" type="button" aria-label="Cerrar">✕</button>
-        <div id="modalContent" class="modal-case"></div>
-      </div>
-
-      <div id="lightbox" class="lightbox">
-        <img id="lightboxImg" src="" alt="Imagen ampliada">
-      </div>
-    `;
-    document.body.appendChild(modal);
 
     const modalEl = document.getElementById('modal');
     const modalContent = document.getElementById('modalContent');
@@ -1243,16 +1191,6 @@ function renderProjectModal(project) {
   });
 }
 
-    document.querySelectorAll('.project-row').forEach(row => {
-      row.addEventListener('click', e => {
-        e.preventDefault();
-        const projectId = row.dataset.project;
-        const project = projectData[projectId];
-        if (!project) return;
-        renderProjectModal(project);
-      });
-    });
-
     modalEl.addEventListener('click', e => {
       if (e.target === modalEl) {
         modalEl.classList.remove('open');
@@ -1306,21 +1244,13 @@ function renderProjectModal(project) {
     });
 
     document.querySelectorAll('.mobile-sublink').forEach(link => {
-      link.addEventListener('click', e => {
-        e.preventDefault();
-
-        const projectId = link.dataset.project;
-        const project = projectData[projectId];
-        if (!project) return;
-
-        renderProjectModal(project);
-
-        mobileMenuPanel.classList.remove('open');
-        mobileWorkSubmenu.classList.remove('open');
-        mobileMenuIcon.textContent = '☰';
-        mobileWorkIcon.textContent = '+';
-      });
-    });
+  link.addEventListener('click', () => {
+    mobileMenuPanel.classList.remove('open');
+    mobileWorkSubmenu.classList.remove('open');
+    mobileMenuIcon.textContent = '☰';
+    mobileWorkIcon.textContent = '+';
+  });
+});
   </script>
 </body>
 </html>
