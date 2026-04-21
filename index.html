@@ -113,21 +113,13 @@
       background: transparent;
     }
 
-    .hero-sub {
-      font-size: clamp(0.95rem, 1.4vw, 1.15rem);
-      color: var(--ink);
-      line-height: 1.55;
-      margin-bottom: 0.5rem;
-      max-width: 500px;
-      animation: fadeUp 0.8s ease both;
-    }
-
     .hero-name {
-  font-size: clamp(2.5rem, 6vw, 7rem);   /* más pequeño */
+  font-size: clamp(2rem, 5vw, 5.5rem);
   font-weight: 400;
-  letter-spacing: 0.02em;               /* menos apretado */
-  line-height: 1.05;
+  letter-spacing: 0.01em;
+  line-height: 1.1;
   text-transform: uppercase;
+  font-style: normal;
 }
 
     .hero-name em {
@@ -147,7 +139,6 @@
   pointer-events: none;
 }
 
-    .hero-sub,
     .hero-name {
       position: relative;
       z-index: 2;
@@ -607,8 +598,13 @@
 
   <section class="hero" id="hey">
   <img src="./assets/illustration.jpg" alt="Ilustración de Leonel" class="hero-illustration">
-  <p class="hero-sub">In Guatemala they call me "maje",<br>but here you can call me</p>
-  <h1 class="hero-name">Leonel<br>Alvarado</h1>
+  <h1 class="hero-name">
+    In Guatemala<br>
+    they call me "maje"<br>
+    but here<br>
+    you can call me<br>
+    Leonel Alvarado
+  </h1>
 </section>
 
   <section id="work">
