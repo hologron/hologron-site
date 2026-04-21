@@ -105,7 +105,7 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
+      justify-content: center;
       padding: 0 3.5rem 3rem;
       position: relative;
       border-bottom: 1px solid rgba(17, 16, 16, 0.12);
@@ -123,27 +123,29 @@
     }
 
     .hero-name {
-      font-size: clamp(5rem, 14vw, 16rem);
-      font-weight: 400;
-      letter-spacing: -0.02em;
-      line-height: 0.9;
-    }
+  font-size: clamp(2.5rem, 6vw, 7rem);   /* más pequeño */
+  font-weight: 400;
+  letter-spacing: 0.02em;               /* menos apretado */
+  line-height: 1.05;
+  text-transform: uppercase;
+}
 
     .hero-name em {
-      font-style: italic;
+      font-style: normal;
     }
 
     .hero-illustration {
-      position: absolute;
-      top: 6rem;
-      right: 3rem;
-      width: clamp(90px, 10vw, 150px);
-      height: auto;
-      display: block;
-      object-fit: contain;
-      z-index: 1;
-      pointer-events: none;
-    }
+  position: absolute;
+  bottom: 3rem;                          /* abajo */
+  right: 3rem;                           /* derecha */
+  top: auto;                             /* cancela el top anterior */
+  width: clamp(70px, 8vw, 120px);
+  height: auto;
+  display: block;
+  object-fit: contain;
+  z-index: 1;
+  pointer-events: none;
+}
 
     .hero-sub,
     .hero-name {
@@ -398,10 +400,11 @@
       }
 
       .hero-illustration {
-        top: 8rem;
-        right: 1.5rem;
-        width: 70px;
-      }
+    bottom: 2rem;
+    right: 1.5rem;
+    top: auto;
+    width: 65px;
+  }
 
       .mobile-nav {
         display: block;
@@ -501,8 +504,9 @@
       }
 
       .hero {
-        padding: 7rem 1.5rem 2.5rem;
-      }
+    padding: 7rem 1.5rem 2.5rem;
+    justify-content: center;
+  }
 
       #work {
         padding: 3rem 1.5rem 0;
@@ -602,10 +606,10 @@
   </div>
 
   <section class="hero" id="hey">
-    <img src="./assets/illustration.jpg" alt="Ilustración de Leonel" class="hero-illustration">
-    <p class="hero-sub">In Guatemala they call me "maje", <br /> but here you can call me</p>
-    <h1 class="hero-name">Leonel <em>Alvarado</em></h1>
-  </section>
+  <img src="./assets/illustration.jpg" alt="Ilustración de Leonel" class="hero-illustration">
+  <p class="hero-sub">In Guatemala they call me "maje",<br>but here you can call me</p>
+  <h1 class="hero-name">Leonel<br>Alvarado</h1>
+</section>
 
   <section id="work">
     <h2 class="work-heading">little work,<br /><em>but always honest®</em></h2>
