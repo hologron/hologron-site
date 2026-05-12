@@ -144,12 +144,11 @@
     }
 
     .work-left {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding-top: 0.6rem;
-      min-height: 320px;
-    }
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;  /* perrito pegado al fondo */
+  padding-top: 0.6rem;
+}
 
     .work-desc {
       font-size: 0.82rem;
@@ -180,19 +179,19 @@
     }
 
     .work-heading {
-      font-size: clamp(4rem, 11vw, 13rem);
-      font-weight: 800;
-      letter-spacing: -0.04em;
-      line-height: 0.9;
-      text-align: left;
-      margin: 0;
-    }
+  font-size: clamp(4rem, 11vw, 13rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+  text-align: right;  /* era left */
+  margin: 0;
+}
 
     /* Las líneas en cursiva bajan a gris, igual que la referencia */
     .work-heading em {
-      font-style: italic;
-      color: var(--muted);
-    }
+  font-style: italic;
+  color: var(--ink);  /* era var(--muted) */
+}
 
     /* ── PROJECTS ── */
     .project-row {
@@ -592,21 +591,18 @@
   </section>
 
   <section id="work">
-    <div class="work-layout">
+  <div class="work-layout">
 
-      <!-- Izquierda: texto pequeño arriba + perrito abajo -->
-      <div class="work-left">
-        <p class="work-desc">little work,<br>but always<br>honest®</p>
-        <div class="dog-block">
-          <img src="./assets/dog.jpg" alt="Toffu" class="dog-img">
-          <p class="dog-caption">Everything was validated by my dog Toffu.</p>
-        </div>
+    <div class="work-left">
+      <div class="dog-block">
+        <img src="./assets/dog.jpg" alt="Toffu" class="dog-img">
+        <p class="dog-caption">Everything was validated by my dog Toffu.</p>
       </div>
-
-      <!-- Derecha: heading enorme, últimas líneas en gris -->
-      <h2 class="work-heading">little<br>work,<br><em>but always<br>honest®</em></h2>
-
     </div>
+
+    <h2 class="work-heading">little<br>work,<br><em>but always<br>honest®</em></h2>
+
+  </div>
 
     <a href="home-tank.html" class="project-row" data-pc="pc1">
       <span class="project-title">Home Tank</span>
