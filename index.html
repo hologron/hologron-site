@@ -462,21 +462,25 @@
       }
 
       .hero {
-        padding: 7rem 1.5rem 2.5rem;
-        align-items: flex-start;
-      }
+  padding: 7rem 1.5rem 2.5rem;
+  align-items: center;  /* era flex-start */
+}
+.hero > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-      /* En mobile la indentación se reduce */
-      .hero-name { font-size: clamp(0.85rem, 4.5vw, 1.1rem); }
-      .hero-name .line-2 { padding-left: 2.5em; }
-      .hero-name .line-3 { padding-left: 5em; }
-      .hero-name .line-4 { padding-left: 2.5em; }
-      .hero-name .line-5 { padding-left: 5em; }
+.hero-name .line-1 { padding-left: 0; }
+.hero-name .line-2 { padding-left: 2.5em; }
+.hero-name .line-3 { padding-left: 5em; }
+.hero-name .line-4 { padding-left: 2.5em; }
+.hero-name .line-5 { padding-left: 5em; }
 
-      .hero-illustration {
-        width: 70px;
-        margin-left: 2.5em;
-      }
+.hero-illustration {
+  width: 70px;
+  margin-left: 2.5em;
+}
 
       #work { padding: 3rem 1.5rem 0; }
 
