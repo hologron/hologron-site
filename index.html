@@ -102,41 +102,43 @@
     }
 
     .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 0 3.5rem 3rem;
-      position: relative;
-      border-bottom: 1px solid rgba(17, 16, 16, 0.12);
-      overflow: hidden;
-      background: transparent;
-    }
-
-    .hero-name {
-  font-size: clamp(1.6rem, 4vw, 4.2rem);
-  font-weight: 400;
-  letter-spacing: 0.01em;
-  line-height: 0.90;
-  text-transform: uppercase;
-  font-style: normal;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;          /* centrado */
+  padding: 0 3.5rem 3rem;
+  position: relative;
+  border-bottom: 1px solid rgba(17, 16, 16, 0.12);
+  overflow: hidden;
 }
 
+    .hero-name {
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  font-style: normal;
+  display: flex;
+  flex-direction: column;
+}
+.hero-name .line-1  { padding-left: 0; }
+.hero-name .line-2  { padding-left: 3.5em; }
+.hero-name .line-3  { padding-left: 7em; }
+.hero-name .line-4  { padding-left: 3.5em; }
+.hero-name .line-5  { padding-left: 7em; }
     .hero-name em {
       font-style: normal;
     }
 
     .hero-illustration {
-  position: absolute;
-  bottom: 7rem;                          /* abajo */
-  right: 3rem;                           /* derecha */
-  top: auto;                             /* cancela el top anterior */
-  width: clamp(80px, 9.2vw, 138px);
-  height: auto;
   display: block;
-  object-fit: contain;
-  z-index: 1;
-  pointer-events: none;
+  margin-top: 1.5rem;
+  margin-left: 3.5em;
+  width: clamp(70px, 8vw, 110px);
+  height: auto;
+  position: static;   /* quita el position: absolute anterior */
 }
 
     .hero-name {
@@ -597,15 +599,17 @@
     </div>
   </div>
 
-  <section class="hero" id="hey">
-  <img src="./assets/illustration.jpg" alt="Ilustración de Leonel" class="hero-illustration">
-  <h1 class="hero-name">
-    In Guatemala<br>
-    they call me "maje"<br>
-    but here<br>
-    you can call me<br>
-    Leonel Alvarado
-  </h1>
+ <section class="hero" id="hey">
+  <div>
+    <h1 class="hero-name">
+      <span class="line-1">IN GUATEMALA</span>
+      <span class="line-2">●● THEY CALL ME "MAJE"</span>
+      <span class="line-3">BUT HERE</span>
+      <span class="line-4">YOU CAN CALL ME</span>
+      <span class="line-5">LEONEL ALVARADO</span>
+    </h1>
+    <img src="./assets/illustration.jpg" alt="Ilustración de Leonel" class="hero-illustration">
+  </div>
 </section>
 
   <section id="work">
