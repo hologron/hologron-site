@@ -56,11 +56,6 @@
       mix-blend-mode: multiply;
     }
 
-    .cur.big {
-      width: 12px;
-      height: 12px;
-    }
-
     nav {
       position: fixed;
       top: 1.5rem;
@@ -101,51 +96,48 @@
       display: none;
     }
 
+    /* ── HERO ── */
     .hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;          /* centrado */
-  padding: 0 3.5rem 3rem;
-  position: relative;
-  border-bottom: 1px solid rgba(17, 16, 16, 0.12);
-  overflow: hidden;
-}
-
-    .hero-name {
-  font-size: clamp(1rem, 2vw, 1.5rem);
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  line-height: 1.2;
-  text-transform: uppercase;
-  font-style: normal;
-  display: flex;
-  flex-direction: column;
-}
-.hero-name .line-1  { padding-left: 0; }
-.hero-name .line-2  { padding-left: 3.5em; }
-.hero-name .line-3  { padding-left: 7em; }
-.hero-name .line-4  { padding-left: 3.5em; }
-.hero-name .line-5  { padding-left: 7em; }
-    .hero-name em {
-      font-style: normal;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 0 3.5rem 3rem;
+      position: relative;
+      border-bottom: 1px solid rgba(17, 16, 16, 0.12);
+      overflow: hidden;
     }
 
-    .hero-illustration {
-  display: block;
-  margin-top: 1.5rem;
-  margin-left: 3.5em;
-  width: clamp(70px, 8vw, 110px);
-  height: auto;
-  position: static;   /* quita el position: absolute anterior */
-}
-
     .hero-name {
+      font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      line-height: 1.35;
+      text-transform: uppercase;
+      font-style: normal;
+      display: flex;
+      flex-direction: column;
       position: relative;
       z-index: 2;
     }
 
+    /* Indentación escalonada estilo Caroline Rossen */
+    .hero-name .line-1 { padding-left: 0; }
+    .hero-name .line-2 { padding-left: 3.5em; }
+    .hero-name .line-3 { padding-left: 7em; }
+    .hero-name .line-4 { padding-left: 3.5em; }
+    .hero-name .line-5 { padding-left: 7em; }
+
+    .hero-illustration {
+      display: block;
+      margin-top: 1.5rem;
+      margin-left: 3.5em;
+      width: clamp(70px, 8vw, 110px);
+      height: auto;
+    }
+
+    /* ── WORK ── */
     #work {
       padding: 5rem 3.5rem 0;
     }
@@ -157,7 +149,6 @@
       line-height: 0.88;
       margin-bottom: 4rem;
       text-align: right;
-      margin-left: 0;
     }
 
     .work-heading em {
@@ -204,6 +195,10 @@
       transform: translateY(0.01em);
       opacity: 0.95;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 52'%3E%3Cpath d='M6 16c0-2.2 1.8-4 4-4h12l3-5h14c2.2 0 4 1.8 4 4v1h11c2.2 0 4 1.8 4 4v28c0 2.2-1.8 4-4 4H10c-2.2 0-4-1.8-4-4V16z' fill='none' stroke='%239a9590' stroke-width='2.8' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E");
+    }
+
+    .project-row:hover .project-title {
+      color: var(--ink);
     }
 
     .project-row:hover .project-title::before {
@@ -261,6 +256,7 @@
       display: block;
     }
 
+    /* ── MANIFESTO ── */
     .manifesto {
       padding: 8rem 3.5rem;
       border-top: 1px solid rgba(17, 16, 16, 0.1);
@@ -279,6 +275,7 @@
       color: var(--muted);
     }
 
+    /* ── FOOTER ── */
     footer {
       border-top: 1px solid rgba(17, 16, 16, 0.12);
       padding: 4rem 3.5rem 3rem;
@@ -368,37 +365,14 @@
       letter-spacing: 0.02em;
     }
 
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(35px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
+    /* ── MOBILE ── */
     @media (max-width: 768px) {
       nav {
         display: none;
       }
 
-      .dog-img {
-        width: 60px;
-      }
-
-      .dog-caption {
-        font-size: 0.65rem;
-      }
-
-      .hero-illustration {
-  bottom: 5rem;
-  right: 1.5rem;
-  top: auto;
-  width: 65px;
-}
-
+      .dog-img { width: 60px; }
+      .dog-caption { font-size: 0.65rem; }
 
       .mobile-nav {
         display: block;
@@ -424,10 +398,7 @@
         cursor: pointer;
       }
 
-      .mobile-nav-left {
-        font-size: 1rem;
-        line-height: 1;
-      }
+      .mobile-nav-left { font-size: 1rem; line-height: 1; }
 
       .mobile-nav-right {
         display: flex;
@@ -436,10 +407,7 @@
         font-weight: 500;
       }
 
-      .mobile-nav-icon {
-        font-size: 1.15rem;
-        line-height: 1;
-      }
+      .mobile-nav-icon { font-size: 1.15rem; line-height: 1; }
 
       .mobile-nav-panel {
         display: none;
@@ -451,9 +419,7 @@
         gap: 1rem;
       }
 
-      .mobile-nav-panel.open {
-        display: flex;
-      }
+      .mobile-nav-panel.open { display: flex; }
 
       .mobile-link,
       .mobile-work-toggle {
@@ -484,9 +450,7 @@
         padding-left: 0.2rem;
       }
 
-      .mobile-submenu.open {
-        display: flex;
-      }
+      .mobile-submenu.open { display: flex; }
 
       .mobile-sublink {
         color: rgba(240, 236, 227, 0.72);
@@ -498,71 +462,55 @@
       }
 
       .hero {
-    padding: 7rem 1.5rem 2.5rem;
-    justify-content: center;
-  }
-
-      #work {
-        padding: 3rem 1.5rem 0;
+        padding: 7rem 1.5rem 2.5rem;
+        align-items: flex-start;
       }
 
-      .project-row {
-        grid-template-columns: 1fr auto;
+      /* En mobile la indentación se reduce */
+      .hero-name { font-size: clamp(0.85rem, 4.5vw, 1.1rem); }
+      .hero-name .line-2 { padding-left: 2.5em; }
+      .hero-name .line-3 { padding-left: 5em; }
+      .hero-name .line-4 { padding-left: 2.5em; }
+      .hero-name .line-5 { padding-left: 5em; }
+
+      .hero-illustration {
+        width: 70px;
+        margin-left: 2.5em;
       }
 
-      .project-cats {
-        display: none;
-      }
+      #work { padding: 3rem 1.5rem 0; }
 
-      .manifesto {
-        padding: 5rem 1.5rem;
-      }
+      .project-row { grid-template-columns: 1fr auto; }
+      .project-cats { display: none; }
+
+      .manifesto { padding: 5rem 1.5rem; }
 
       footer {
         grid-template-columns: 1fr;
         padding: 3rem 1.5rem 2rem;
       }
 
-      .footer-links {
-        align-items: flex-start;
-      }
-
-      .prev-card {
-        display: none;
-      }
-
-      .footer-bottom {
-        flex-direction: column;
-        gap: 0.5rem;
-      }
+      .footer-links { align-items: flex-start; }
+      .prev-card { display: none; }
+      .footer-bottom { flex-direction: column; gap: 0.5rem; }
     }
 
     @media (hover: none), (pointer: coarse) {
-      .cur {
-        display: none;
-      }
-
-      body,
-      .project-row,
-      a,
-      button {
-        cursor: auto;
-      }
+      .cur { display: none; }
+      body, .project-row, a, button { cursor: auto; }
     }
   </style>
 </head>
 <body>
   <div class="cur" id="cur"></div>
 
-  <div class="prev-card pc1" id="pc1">
+  <div class="prev-card" id="pc1">
     <img src="./assets/proyecto1/test.jpg" alt="Preview proyecto 1" />
   </div>
-
-  <div class="prev-card pc2" id="pc2">
+  <div class="prev-card" id="pc2">
     <img src="./assets/proyecto2/thumb-1.jpg" alt="Preview proyecto 2" />
   </div>
-
-  <div class="prev-card pc3" id="pc3">
+  <div class="prev-card" id="pc3">
     <img src="./assets/proyecto3/thumb-1.jpg" alt="Preview proyecto 3" />
   </div>
 
@@ -580,37 +528,35 @@
         <span class="mobile-nav-icon" id="mobileMenuIcon">☰</span>
       </span>
     </button>
-
     <div class="mobile-nav-panel" id="mobileMenuPanel">
       <a href="#hey" class="mobile-link">Hey</a>
-
       <button class="mobile-link mobile-work-toggle" id="mobileWorkToggle" type="button">
         <span>Work</span>
         <span id="mobileWorkIcon">+</span>
       </button>
-
       <div class="mobile-submenu" id="mobileWorkSubmenu">
         <a href="home-tank.html" class="mobile-sublink">Home Tank</a>
         <a href="sky-clans.html" class="mobile-sublink">Sky Clans</a>
         <a href="airbnb-parking.html" class="mobile-sublink">Airbnb Parking</a>
       </div>
-
       <a href="#contacto" class="mobile-link">Chat</a>
     </div>
   </div>
 
- <section class="hero" id="hey">
-  <div>
-    <h1 class="hero-name">
-      <span class="line-1">IN GUATEMALA</span>
-      <span class="line-2">●● THEY CALL ME "MAJE"</span>
-      <span class="line-3">BUT HERE</span>
-      <span class="line-4">YOU CAN CALL ME</span>
-      <span class="line-5">LEONEL ALVARADO</span>
-    </h1>
-    <img src="./assets/illustration.jpg" alt="Ilustración de Leonel" class="hero-illustration">
-  </div>
-</section>
+  <section class="hero" id="hey">
+    <div>
+      <!-- Las clases line-1…line-5 dan la indentación escalonada -->
+      <!-- El TextScramble corre DENTRO de cada span, no reemplaza el h1 -->
+      <h1 class="hero-name">
+        <span class="line-1"></span>
+        <span class="line-2"></span>
+        <span class="line-3"></span>
+        <span class="line-4"></span>
+        <span class="line-5"></span>
+      </h1>
+      <img src="./assets/illustration.jpg" alt="Ilustración de Leonel" class="hero-illustration">
+    </div>
+  </section>
 
   <section id="work">
     <h2 class="work-heading">little work,<br /><em>but always honest®</em></h2>
@@ -618,20 +564,17 @@
       <img src="./assets/dog.jpg" alt="Toffu" class="dog-img">
       <p class="dog-caption">Everything was validated by my dog Toffu.</p>
     </div>
-
     <div>
       <a href="home-tank.html" class="project-row" data-pc="pc1">
         <span class="project-title">Home Tank</span>
         <span class="project-cats">Product Design</span>
         <span class="project-type">Rotoplas</span>
       </a>
-
       <a href="sky-clans.html" class="project-row" data-pc="pc2">
         <span class="project-title">Sky Clans</span>
         <span class="project-cats">Experiential & Immersive</span>
         <span class="project-type">Clash of Clans</span>
       </a>
-
       <a href="airbnb-parking.html" class="project-row" data-pc="pc3">
         <span class="project-title">Airbnb Parking</span>
         <span class="project-cats">Creative E-Commerce</span>
@@ -649,13 +592,11 @@
       <p class="footer-label">do you think that Legally Blonde is the best movie of the 2000s?</p>
       <a href="mailto:leo963688@gmail.com" class="footer-cta">okay, let's talk.</a>
     </div>
-
     <div class="footer-links">
       <a href="https://www.linkedin.com/in/hologron/" class="footer-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
       <a href="https://www.instagram.com/hologronn/?hl=es" class="footer-link" target="_blank" rel="noopener noreferrer">Instagram</a>
       <a href="https://www.behance.net/hologron" class="footer-link" target="_blank" rel="noopener noreferrer">Behance</a>
     </div>
-
     <div class="footer-bottom">
       <span>© 2026 Leonel Alvarado</span>
       <span>Guatemala</span>
@@ -664,33 +605,31 @@
   </footer>
 
   <script>
+    /* ── CURSOR ── */
     const cur = document.getElementById('cur');
-    const isTouchDevice = window.matchMedia('(hover: none), (pointer: coarse)').matches;
-
-    if (!isTouchDevice) {
+    const isTouch = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+    if (!isTouch) {
       document.addEventListener('mousemove', e => {
         cur.style.left = e.clientX + 'px';
-        cur.style.top = e.clientY + 'px';
+        cur.style.top  = e.clientY + 'px';
       });
     } else {
       cur.style.display = 'none';
     }
 
+    /* ── PREVIEW CARDS ── */
     const cards = {};
     document.querySelectorAll('[id^="pc"]').forEach(el => (cards[el.id] = el));
     let active = null;
 
     document.querySelectorAll('.project-row').forEach(row => {
-      const cid = row.dataset.pc;
-      const card = cards[cid];
+      const card = cards[row.dataset.pc];
       if (!card) return;
-
       row.addEventListener('mouseenter', () => {
         if (active && active !== card) active.classList.remove('on');
         card.classList.add('on');
         active = card;
       });
-
       row.addEventListener('mouseleave', () => {
         card.classList.remove('on');
         active = null;
@@ -700,141 +639,123 @@
     document.addEventListener('mousemove', e => {
       if (active) {
         active.style.left = (e.clientX + 28) + 'px';
-        active.style.top = (e.clientY - 55) + 'px';
+        active.style.top  = (e.clientY - 55) + 'px';
       }
     });
 
-    const secs = document.querySelectorAll('section[id], footer[id]');
+    /* ── NAV ACTIVE ── */
+    const secs     = document.querySelectorAll('section[id], footer[id]');
     const navLinks = document.querySelectorAll('.nav-item');
 
-    new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          navLinks.forEach(n => n.classList.remove('active'));
-          const a = document.querySelector(`.nav-item[href="#${e.target.id}"]`);
-          if (a) a.classList.add('active');
-          else navLinks[0].classList.add('active');
-        }
-      });
-    }, { threshold: 0.45 }).observe(document.querySelector('footer'));
+    const setActive = id => {
+      navLinks.forEach(n => n.classList.remove('active'));
+      const a = document.querySelector(`.nav-item[href="#${id}"]`);
+      if (a) a.classList.add('active'); else navLinks[0].classList.add('active');
+    };
 
     secs.forEach(s => {
       new IntersectionObserver(entries => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            navLinks.forEach(n => n.classList.remove('active'));
-            const a = document.querySelector(`.nav-item[href="#${e.target.id}"]`);
-            if (a) a.classList.add('active');
-          }
-        });
+        entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); });
       }, { threshold: 0.4 }).observe(s);
     });
 
-    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-    const mobileMenuPanel = document.getElementById('mobileMenuPanel');
-    const mobileMenuIcon = document.getElementById('mobileMenuIcon');
-
-    const mobileWorkToggle = document.getElementById('mobileWorkToggle');
+    /* ── MOBILE MENU ── */
+    const mobileMenuToggle  = document.getElementById('mobileMenuToggle');
+    const mobileMenuPanel   = document.getElementById('mobileMenuPanel');
+    const mobileMenuIcon    = document.getElementById('mobileMenuIcon');
+    const mobileWorkToggle  = document.getElementById('mobileWorkToggle');
     const mobileWorkSubmenu = document.getElementById('mobileWorkSubmenu');
-    const mobileWorkIcon = document.getElementById('mobileWorkIcon');
+    const mobileWorkIcon    = document.getElementById('mobileWorkIcon');
 
-    if (mobileMenuToggle && mobileMenuPanel) {
-      mobileMenuToggle.addEventListener('click', () => {
-        const isOpen = mobileMenuPanel.classList.toggle('open');
-        mobileMenuIcon.textContent = isOpen ? '✕' : '☰';
-      });
-    }
+    mobileMenuToggle?.addEventListener('click', () => {
+      const open = mobileMenuPanel.classList.toggle('open');
+      mobileMenuIcon.textContent = open ? '✕' : '☰';
+    });
 
-    if (mobileWorkToggle && mobileWorkSubmenu) {
-      mobileWorkToggle.addEventListener('click', () => {
-        const isOpen = mobileWorkSubmenu.classList.toggle('open');
-        mobileWorkIcon.textContent = isOpen ? '−' : '+';
-      });
-    }
+    mobileWorkToggle?.addEventListener('click', () => {
+      const open = mobileWorkSubmenu.classList.toggle('open');
+      mobileWorkIcon.textContent = open ? '−' : '+';
+    });
 
-    document.querySelectorAll('.mobile-link[href^="#"]').forEach(link => {
-      link.addEventListener('click', () => {
+    document.querySelectorAll('.mobile-link[href^="#"]').forEach(l => {
+      l.addEventListener('click', () => {
         mobileMenuPanel.classList.remove('open');
         mobileMenuIcon.textContent = '☰';
       });
     });
 
-    document.querySelectorAll('.mobile-sublink').forEach(link => {
-      link.addEventListener('click', () => {
+    document.querySelectorAll('.mobile-sublink').forEach(l => {
+      l.addEventListener('click', () => {
         mobileMenuPanel.classList.remove('open');
         mobileWorkSubmenu.classList.remove('open');
         mobileMenuIcon.textContent = '☰';
         mobileWorkIcon.textContent = '+';
       });
     });
-    // TEXT SCRAMBLE
-class TextScramble {
-  constructor(el) {
-    this.el = el;
-    this.chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&';
-    this.update = this.update.bind(this);
-  }
-  setText(newText) {
-    const length = newText.length;
-    const promise = new Promise(resolve => this.resolve = resolve);
-    this.queue = [];
-    for (let i = 0; i < length; i++) {
-      const to = newText[i];
-      const start = Math.floor(Math.random() * 12);
-      const end = start + Math.floor(Math.random() * 12);
-      this.queue.push({ to, start, end });
-    }
-    cancelAnimationFrame(this.frameRequest);
-    this.frame = 0;
-    this.update();
-    return promise;
-  }
-  update() {
-    let output = '';
-    let complete = 0;
-    for (let i = 0, n = this.queue.length; i < n; i++) {
-      let { to, start, end } = this.queue[i];
-      if (this.frame >= end) {
-        complete++;
-        output += to;
-      } else if (this.frame >= start) {
-        output += `<span style="opacity:0.3">${this.chars[Math.floor(Math.random() * this.chars.length)]}</span>`;
-      } else {
-        output += '<span style="opacity:0.1">_</span>';
+
+    /* ── TEXT SCRAMBLE ── */
+    class TextScramble {
+      constructor(el) {
+        this.el    = el;
+        this.chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&';
+        this.update = this.update.bind(this);
+      }
+      setText(newText) {
+        const len     = newText.length;
+        const promise = new Promise(resolve => (this.resolve = resolve));
+        this.queue = [];
+        for (let i = 0; i < len; i++) {
+          const start = Math.floor(Math.random() * 12);
+          const end   = start + Math.floor(Math.random() * 12);
+          this.queue.push({ to: newText[i], start, end });
+        }
+        cancelAnimationFrame(this.frameRequest);
+        this.frame = 0;
+        this.update();
+        return promise;
+      }
+      update() {
+        let output = '', complete = 0;
+        for (let i = 0, n = this.queue.length; i < n; i++) {
+          const { to, start, end } = this.queue[i];
+          if (this.frame >= end) {
+            complete++;
+            output += to;
+          } else if (this.frame >= start) {
+            output += `<span style="opacity:0.3">${this.chars[Math.floor(Math.random() * this.chars.length)]}</span>`;
+          } else {
+            output += '<span style="opacity:0.1">_</span>';
+          }
+        }
+        this.el.innerHTML = output;
+        if (complete === this.queue.length) {
+          this.resolve();
+        } else {
+          this.frameRequest = requestAnimationFrame(this.update);
+          this.frame++;
+        }
       }
     }
-    this.el.innerHTML = output;
-    if (complete === this.queue.length) {
-      this.resolve();
-    } else {
-      this.frameRequest = requestAnimationFrame(this.update);
-      this.frame++;
-    }
-  }
-}
 
-// Aplicar al hero respetando los <br>
-const heroEl = document.querySelector('.hero-name');
-if (heroEl) {
-  const lines = [
-    'IN GUATEMALA',
-    'THEY CALL ME "MAJE"',
-    'BUT HERE',
-    'YOU CAN CALL ME',
-    'LEONEL ALVARADO'
-  ];
+    /* ── APLICAR SCRAMBLE respetando las clases de indentación ── */
+    const data = [
+      { cls: 'line-1', text: 'IN GUATEMALA' },
+      { cls: 'line-2', text: '●● THEY CALL ME "MAJE"' },
+      { cls: 'line-3', text: 'BUT HERE' },
+      { cls: 'line-4', text: 'YOU CAN CALL ME' },
+      { cls: 'line-5', text: 'LEONEL ALVARADO' },
+    ];
 
-  // Crear un span por línea para conservar los saltos
-  heroEl.innerHTML = lines.map(l => `<span class="scramble-line"></span>`).join('<br>');
-  const spans = heroEl.querySelectorAll('.scramble-line');
-
-  setTimeout(() => {
-    lines.forEach((line, i) => {
-      const fx = new TextScramble(spans[i]);
-      setTimeout(() => fx.setText(line), i * 80);
-    });
-  }, 200);
-}
+    // Los spans ya existen en el HTML con sus clases —
+    // el scramble escribe DENTRO de cada uno, nunca reemplaza el h1.
+    setTimeout(() => {
+      data.forEach((d, i) => {
+        const span = document.querySelector(`.hero-name .${d.cls}`);
+        if (!span) return;
+        const fx = new TextScramble(span);
+        setTimeout(() => fx.setText(d.text), i * 80);
+      });
+    }, 200);
   </script>
 </body>
 </html>
