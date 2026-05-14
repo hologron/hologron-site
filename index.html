@@ -135,63 +135,35 @@
       padding: 5rem 3.5rem 0;
     }
 
-    .work-layout {
-      display: grid;
-      grid-template-columns: 260px 1fr;
-      gap: 2rem;
-      align-items: start;
+    /* ── WORK HEADER: inline editorial ── */
+    .work-intro {
       margin-bottom: 4rem;
     }
 
-    .work-left {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;  /* perrito pegado al fondo */
-  padding-top: 0.6rem;
-}
-
-    .work-desc {
-      font-size: 0.82rem;
-      font-weight: 400;
-      line-height: 1.6;
-      color: var(--muted);
-      max-width: 200px;
+    .work-intro-body {
+      font-size: clamp(2rem, 4vw, 4.5rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      color: var(--ink);
+      max-width: 860px;
     }
 
-    .dog-block {
-      margin-top: auto;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0.4rem;
+    .work-intro-body em {
+      font-style: italic;
+      color: var(--ink);
     }
 
-    .dog-img {
-      width: 90px;
-      height: auto;
+    .work-intro-body .dog-inline {
+      display: inline-block;
+      width: clamp(2rem, 4vw, 4.5rem);
+      height: clamp(2rem, 4vw, 4.5rem);
+      vertical-align: middle;
+      margin: 0 0.18em;
+      object-fit: contain;
       image-rendering: pixelated;
+      transform: translateY(-0.06em);
     }
-
-    .dog-caption {
-      font-size: 0.7rem;
-      color: var(--muted);
-      letter-spacing: 0.02em;
-    }
-
-    .work-heading {
-  font-size: clamp(4rem, 11vw, 13rem);
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  line-height: 0.9;
-  text-align: right;  /* era left */
-  margin: 0;
-}
-
-    /* Las líneas en cursiva bajan a gris, igual que la referencia */
-    .work-heading em {
-  font-style: italic;
-  color: var(--ink);  /* era var(--muted) */
-}
 
     /* ── PROJECTS ── */
     .project-row {
@@ -380,9 +352,6 @@
     @media (max-width: 768px) {
       nav { display: none; }
 
-      .dog-img { width: 60px; }
-      .dog-caption { font-size: 0.65rem; }
-
       .mobile-nav {
         display: block;
         position: fixed;
@@ -495,24 +464,16 @@
 
       #work { padding: 3rem 1.5rem 0; }
 
-      .work-layout {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-        margin-bottom: 2.5rem;
+      .work-intro { margin-bottom: 2.5rem; }
+
+      .work-intro-body {
+        font-size: clamp(1.6rem, 7.5vw, 2.8rem);
       }
 
-      .work-left {
-        flex-direction: row;
-        align-items: flex-end;
-        min-height: auto;
-        gap: 1rem;
+      .work-intro-body .dog-inline {
+        width: clamp(1.6rem, 7.5vw, 2.8rem);
+        height: clamp(1.6rem, 7.5vw, 2.8rem);
       }
-
-      .work-desc { font-size: 0.75rem; }
-
-      .work-heading { font-size: clamp(3.5rem, 16vw, 6rem); }
-
-      .dog-block { margin-top: 0; }
 
       .project-row { grid-template-columns: 1fr auto; }
       .project-cats { display: none; }
@@ -548,11 +509,11 @@
     <img src="./assets/proyecto3/thumb-1.jpg" alt="Preview proyecto 3" />
   </div>
   <div class="prev-card" id="pc4">
-  <img src="./assets/proyecto4/thumb-1.jpg" alt="Preview Access Lp(a)ss" />
-</div>
-<div class="prev-card" id="pc5">
-  <img src="./assets/proyecto5/thumb-1.jpg" alt="Preview The Other Intheritance" />
-</div>
+    <img src="./assets/proyecto4/thumb-1.jpg" alt="Preview Access Lp(a)ss" />
+  </div>
+  <div class="prev-card" id="pc5">
+    <img src="./assets/proyecto5/thumb-1.jpg" alt="Preview The Other Intheritance" />
+  </div>
 
   <nav>
     <a href="#hey" class="nav-item active">Hey</a>
@@ -578,13 +539,14 @@
         <a href="home-tank.html" class="mobile-sublink">Home Tank</a>
         <a href="sky-clans.html" class="mobile-sublink">Sky Clans</a>
         <a href="airbnb-parking.html" class="mobile-sublink">Airbnb Parking</a>
-      <a href="access-lpass.html" class="mobile-sublink">Access Lp(a)ss</a>
-<a href="the-other-intheritance.html" class="mobile-sublink">The Other Intheritance</a>
+        <a href="access-lpass.html" class="mobile-sublink">Access Lp(a)ss</a>
+        <a href="the-other-intheritance.html" class="mobile-sublink">The Other Intheritance</a>
       </div>
       <a href="#contacto" class="mobile-link">Chat</a>
     </div>
   </div>
 
+  <!-- HERO — sin cambios -->
   <section class="hero" id="hey">
     <div>
       <h1 class="hero-name">
@@ -598,19 +560,16 @@
     </div>
   </section>
 
+  <!-- WORK — nuevo encabezado editorial inline -->
   <section id="work">
-  <div class="work-layout">
-
-    <div class="work-left">
-      <div class="dog-block">
-        <img src="./assets/dog.jpg" alt="Toffu" class="dog-img">
-        <p class="dog-caption">Everything was validated by my dog Toffu.</p>
-      </div>
+    <div class="work-intro">
+      <p class="work-intro-body">
+        little work, but always honest®
+        — validated by my dog
+        <img src="./assets/dog.jpg" alt="Toffu" class="dog-inline">
+        <em>Toffu.</em>
+      </p>
     </div>
-
-    <h2 class="work-heading">little<br>work,<br><em>but always<br>honest®</em></h2>
-
-  </div>
 
     <a href="home-tank.html" class="project-row" data-pc="pc1">
       <span class="project-title">Home Tank</span>
@@ -628,16 +587,15 @@
       <span class="project-type">Airbnb</span>
     </a>
     <a href="access-lpass.html" class="project-row" data-pc="pc4">
-  <span class="project-title">Access Lp(a)ss</span>
-  <span class="project-cats">Health and Prevention</span>
-  <span class="project-type">Novartis</span>
-</a>
-<a href="the-other-intheritance.html" class="project-row" data-pc="pc5">
-  <span class="project-title">The Other Intheritance</span>
-  <span class="project-cats">Health and Prevention</span>
-  <span class="project-type">Novartis</span>
-</a>
-
+      <span class="project-title">Access Lp(a)ss</span>
+      <span class="project-cats">Health and Prevention</span>
+      <span class="project-type">Novartis</span>
+    </a>
+    <a href="the-other-intheritance.html" class="project-row" data-pc="pc5">
+      <span class="project-title">The Other Intheritance</span>
+      <span class="project-cats">Health and Prevention</span>
+      <span class="project-type">Novartis</span>
+    </a>
   </section>
 
   <div class="manifesto">
