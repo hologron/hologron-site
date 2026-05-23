@@ -275,11 +275,19 @@
       letter-spacing: -0.03em;
       line-height: 1.15;
       max-width: 880px;
+      color: var(--ink);
     }
 
-    .manifesto p em {
-      font-style: italic;
-      color: var(--muted);
+    .manifesto p a {
+      color: var(--ink);
+      text-decoration: underline;
+      text-underline-offset: 5px;
+      text-decoration-thickness: 2px;
+      transition: opacity 0.2s;
+    }
+
+    .manifesto p a:hover {
+      opacity: 0.5;
     }
 
     /* ── FOOTER ── */
@@ -546,7 +554,6 @@
     </div>
   </div>
 
-  <!-- HERO — sin cambios -->
   <section class="hero" id="hey">
     <div>
       <h1 class="hero-name">
@@ -560,7 +567,6 @@
     </div>
   </section>
 
-  <!-- WORK — nuevo encabezado editorial inline -->
   <section id="work">
     <div class="work-intro">
       <p class="work-intro-body">
@@ -599,7 +605,7 @@
   </section>
 
   <div class="manifesto">
-    <p>more inspiration?,<br><em>look for Humberto Ak'abal, Edelberto Torres Rivas or Mary Wells Lawrence.</em></p>
+    <p>more inspiration?, look for <a href="https://en.wikipedia.org/wiki/Humberto_Ak%27abal" target="_blank" rel="noopener noreferrer">Humberto Ak'abal</a>, <a href="https://en.wikipedia.org/wiki/Edelberto_Torres_Rivas" target="_blank" rel="noopener noreferrer">Edelberto Torres Rivas</a> or <a href="https://en.wikipedia.org/wiki/Mary_Wells_Lawrence" target="_blank" rel="noopener noreferrer">Mary Wells Lawrence</a>.</p>
   </div>
 
   <footer id="contacto">
