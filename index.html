@@ -54,7 +54,6 @@
       mix-blend-mode: multiply;
     }
 
-    /* ── NAV ── */
     nav {
       position: fixed;
       top: 1.5rem;
@@ -91,7 +90,6 @@
 
     .mobile-nav { display: none; }
 
-    /* ── HERO ── */
     .hero {
       min-height: 100vh;
       display: flex;
@@ -130,12 +128,10 @@
       height: auto;
     }
 
-    /* ── WORK ── */
     #work {
       padding: 5rem 3.5rem 0;
     }
 
-    /* ── WORK HEADER: inline editorial ── */
     .work-intro {
       margin-bottom: 4rem;
     }
@@ -165,7 +161,15 @@
       transform: translateY(-0.06em);
     }
 
-    /* ── PROJECTS ── */
+    .projects-mobile-shell,
+    .projects-mobile-track {
+      display: contents;
+    }
+
+    .project-mobile-media {
+      display: none;
+    }
+
     .project-row {
       display: grid;
       grid-template-columns: 1fr 1fr auto;
@@ -263,7 +267,6 @@
       display: block;
     }
 
-    /* ── MANIFESTO ── */
     .manifesto {
       padding: 8rem 3.5rem;
       border-top: 1px solid rgba(17, 16, 16, 0.1);
@@ -290,7 +293,6 @@
       opacity: 0.5;
     }
 
-    /* ── FOOTER ── */
     footer {
       border-top: 1px solid rgba(17, 16, 16, 0.12);
       padding: 4rem 3.5rem 3rem;
@@ -356,7 +358,6 @@
       color: var(--muted);
     }
 
-    /* ── MOBILE ── */
     @media (max-width: 768px) {
       nav { display: none; }
 
@@ -448,8 +449,10 @@
       }
 
       .hero {
+        min-height: 100vh;
         padding: 7rem 1.5rem 2.5rem;
         align-items: center;
+        border-bottom: none;
       }
 
       .hero > div {
@@ -470,23 +473,127 @@
         margin-left: 2.5em;
       }
 
-      #work { padding: 3rem 1.5rem 0; }
+      #work {
+        padding: 34vh 0 0;
+      }
 
-      .work-intro { margin-bottom: 2.5rem; }
+      .work-intro {
+        margin-bottom: 5.5rem;
+        padding: 0 1.5rem;
+      }
 
       .work-intro-body {
-        font-size: clamp(1.6rem, 7.5vw, 2.8rem);
+        font-size: clamp(2.45rem, 12vw, 4.8rem);
+        line-height: 0.92;
+        letter-spacing: -0.075em;
+        max-width: 100%;
       }
 
       .work-intro-body .dog-inline {
-        width: clamp(1.6rem, 7.5vw, 2.8rem);
-        height: clamp(1.6rem, 7.5vw, 2.8rem);
+        width: clamp(2.45rem, 12vw, 4.8rem);
+        height: clamp(2.45rem, 12vw, 4.8rem);
       }
 
-      .project-row { grid-template-columns: 1fr auto; }
-      .project-cats { display: none; }
+      .projects-mobile-shell {
+        display: block;
+        padding: 0 1.5rem;
+        overflow: visible;
+      }
 
-      .manifesto { padding: 5rem 1.5rem; }
+      .projects-mobile-track {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        padding-bottom: 5rem;
+      }
+
+      .project-row {
+        width: 100%;
+        min-height: 210px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 1.15rem;
+        border: none;
+        border-radius: 28px;
+        overflow: hidden;
+        position: relative;
+        margin-top: -92px;
+        box-shadow: 0 18px 38px rgba(17, 16, 16, 0.12);
+      }
+
+      .project-row:first-child {
+        margin-top: 0;
+      }
+
+      .project-row:last-child {
+        border-bottom: none;
+      }
+
+      .project-row:nth-child(1) {
+        background: #c8b394;
+        z-index: 1;
+      }
+
+      .project-row:nth-child(2) {
+        background: #91a091;
+        z-index: 2;
+      }
+
+      .project-row:nth-child(3) {
+        background: #d7a468;
+        z-index: 3;
+      }
+
+      .project-row:nth-child(4) {
+        background: #ebe6dd;
+        z-index: 4;
+      }
+
+      .project-row:nth-child(5) {
+        background: #b98576;
+        z-index: 5;
+      }
+
+      .project-mobile-media {
+        display: none;
+      }
+
+      .project-title {
+        display: block;
+        font-size: clamp(2.05rem, 9.8vw, 3.35rem);
+        line-height: 0.88;
+        letter-spacing: -0.075em;
+        color: rgba(17, 16, 16, 0.58);
+        padding: 0;
+        max-width: 96%;
+      }
+
+      .project-title::before {
+        display: none;
+      }
+
+      .project-cats {
+        display: block;
+        margin-top: auto;
+        font-size: 0.76rem;
+        font-weight: 600;
+        color: rgba(17, 16, 16, 0.45);
+      }
+
+      .project-type {
+        display: block;
+        margin-top: 0.35rem;
+        font-size: 0.76rem;
+        font-weight: 600;
+        text-align: left;
+        color: rgba(17, 16, 16, 0.45);
+      }
+
+      .manifesto {
+        padding: 5rem 1.5rem;
+        border-top: none;
+      }
 
       footer {
         grid-template-columns: 1fr;
@@ -537,12 +644,15 @@
         <span class="mobile-nav-icon" id="mobileMenuIcon">☰</span>
       </span>
     </button>
+
     <div class="mobile-nav-panel" id="mobileMenuPanel">
       <a href="#hey" class="mobile-link">Hey</a>
+
       <button class="mobile-link mobile-work-toggle" id="mobileWorkToggle" type="button">
         <span>Work</span>
         <span id="mobileWorkIcon">+</span>
       </button>
+
       <div class="mobile-submenu" id="mobileWorkSubmenu">
         <a href="home-tank.html" class="mobile-sublink">Home Tank</a>
         <a href="sky-clans.html" class="mobile-sublink">Sky Clans</a>
@@ -550,6 +660,7 @@
         <a href="access-lpass.html" class="mobile-sublink">Access Lp(a)ss</a>
         <a href="the-other-intheritance.html" class="mobile-sublink">The Other Inheritance</a>
       </div>
+
       <a href="#contacto" class="mobile-link">Chat</a>
     </div>
   </div>
@@ -577,31 +688,56 @@
       </p>
     </div>
 
-    <a href="home-tank.html" class="project-row" data-pc="pc1">
-      <span class="project-title">Home Tank</span>
-      <span class="project-cats">Product Design</span>
-      <span class="project-type">Rotoplas</span>
-    </a>
-    <a href="sky-clans.html" class="project-row" data-pc="pc2">
-      <span class="project-title">Sky Clans</span>
-      <span class="project-cats">Experiential & Immersive</span>
-      <span class="project-type">Clash of Clans</span>
-    </a>
-    <a href="airbnb-parking.html" class="project-row" data-pc="pc3">
-      <span class="project-title">Airbnb Parking</span>
-      <span class="project-cats">Creative E-Commerce</span>
-      <span class="project-type">Airbnb</span>
-    </a>
-    <a href="access-lpass.html" class="project-row" data-pc="pc4">
-      <span class="project-title">Access Lp(a)ss</span>
-      <span class="project-cats">Health and Prevention</span>
-      <span class="project-type">Novartis</span>
-    </a>
-    <a href="the-other-intheritance.html" class="project-row" data-pc="pc5">
-      <span class="project-title">The Other Inheritance</span>
-      <span class="project-cats">Health and Prevention</span>
-      <span class="project-type">Novartis</span>
-    </a>
+    <div class="projects-mobile-shell">
+      <div class="projects-mobile-track">
+
+        <a href="home-tank.html" class="project-row" data-pc="pc1">
+          <div class="project-mobile-media">
+            <img src="./assets/proyecto1/test.jpg" alt="Home Tank">
+          </div>
+          <span class="project-title">Home Tank</span>
+          <span class="project-cats">Product Design</span>
+          <span class="project-type">Rotoplas</span>
+        </a>
+
+        <a href="sky-clans.html" class="project-row" data-pc="pc2">
+          <div class="project-mobile-media">
+            <img src="./assets/proyecto2/thumb-1.jpg" alt="Sky Clans">
+          </div>
+          <span class="project-title">Sky Clans</span>
+          <span class="project-cats">Experiential & Immersive</span>
+          <span class="project-type">Clash of Clans</span>
+        </a>
+
+        <a href="airbnb-parking.html" class="project-row" data-pc="pc3">
+          <div class="project-mobile-media">
+            <img src="./assets/proyecto3/thumb-1.jpg" alt="Airbnb Parking">
+          </div>
+          <span class="project-title">Airbnb Parking</span>
+          <span class="project-cats">Creative E-Commerce</span>
+          <span class="project-type">Airbnb</span>
+        </a>
+
+        <a href="access-lpass.html" class="project-row" data-pc="pc4">
+          <div class="project-mobile-media">
+            <img src="./assets/proyecto4/thumb-1.jpg" alt="Access Lp(a)ss">
+          </div>
+          <span class="project-title">Access Lp(a)ss</span>
+          <span class="project-cats">Health and Prevention</span>
+          <span class="project-type">Novartis</span>
+        </a>
+
+        <a href="the-other-intheritance.html" class="project-row" data-pc="pc5">
+          <div class="project-mobile-media">
+            <img src="./assets/proyecto5/thumb-1.jpg" alt="The Other Inheritance">
+          </div>
+          <span class="project-title">The Other Inheritance</span>
+          <span class="project-cats">Health and Prevention</span>
+          <span class="project-type">Novartis</span>
+        </a>
+
+      </div>
+    </div>
   </section>
 
   <div class="manifesto">
@@ -613,11 +749,13 @@
       <p class="footer-label">do you think that Legally Blonde is the best movie of the 2000s?</p>
       <a href="mailto:leo963688@gmail.com" class="footer-cta">okay, let's talk.</a>
     </div>
+
     <div class="footer-links">
       <a href="https://www.linkedin.com/in/hologron/" class="footer-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
       <a href="https://www.instagram.com/hologronn/?hl=es" class="footer-link" target="_blank" rel="noopener noreferrer">Instagram</a>
       <a href="https://www.behance.net/hologron" class="footer-link" target="_blank" rel="noopener noreferrer">Behance</a>
     </div>
+
     <div class="footer-bottom">
       <span>© 2026 Leonel Alvarado</span>
       <span>Guatemala</span>
@@ -626,9 +764,9 @@
   </footer>
 
   <script>
-    /* ── CURSOR ── */
     const cur = document.getElementById('cur');
     const isTouch = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+
     if (!isTouch) {
       document.addEventListener('mousemove', e => {
         cur.style.left = e.clientX + 'px';
@@ -638,7 +776,6 @@
       cur.style.display = 'none';
     }
 
-    /* ── PREVIEW CARDS ── */
     const cards = {};
     document.querySelectorAll('[id^="pc"]').forEach(el => (cards[el.id] = el));
     let active = null;
@@ -646,11 +783,13 @@
     document.querySelectorAll('.project-row').forEach(row => {
       const card = cards[row.dataset.pc];
       if (!card) return;
+
       row.addEventListener('mouseenter', () => {
         if (active && active !== card) active.classList.remove('on');
         card.classList.add('on');
         active = card;
       });
+
       row.addEventListener('mouseleave', () => {
         card.classList.remove('on');
         active = null;
@@ -664,7 +803,6 @@
       }
     });
 
-    /* ── NAV ACTIVE ── */
     const secs     = document.querySelectorAll('section[id], footer[id]');
     const navLinks = document.querySelectorAll('.nav-item');
 
@@ -680,7 +818,6 @@
       }, { threshold: 0.4 }).observe(s);
     });
 
-    /* ── MOBILE MENU ── */
     const mobileMenuToggle  = document.getElementById('mobileMenuToggle');
     const mobileMenuPanel   = document.getElementById('mobileMenuPanel');
     const mobileMenuIcon    = document.getElementById('mobileMenuIcon');
@@ -714,31 +851,37 @@
       });
     });
 
-    /* ── TEXT SCRAMBLE ── */
     class TextScramble {
       constructor(el) {
         this.el    = el;
         this.chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&';
         this.update = this.update.bind(this);
       }
+
       setText(newText) {
         const len     = newText.length;
         const promise = new Promise(resolve => (this.resolve = resolve));
         this.queue = [];
+
         for (let i = 0; i < len; i++) {
           const start = Math.floor(Math.random() * 12);
           const end   = start + Math.floor(Math.random() * 12);
           this.queue.push({ to: newText[i], start, end });
         }
+
         cancelAnimationFrame(this.frameRequest);
         this.frame = 0;
         this.update();
+
         return promise;
       }
+
       update() {
         let output = '', complete = 0;
+
         for (let i = 0, n = this.queue.length; i < n; i++) {
           const { to, start, end } = this.queue[i];
+
           if (this.frame >= end) {
             complete++;
             output += to;
@@ -748,7 +891,9 @@
             output += '<span style="opacity:0.1">_</span>';
           }
         }
+
         this.el.innerHTML = output;
+
         if (complete === this.queue.length) {
           this.resolve();
         } else {
@@ -758,7 +903,6 @@
       }
     }
 
-    /* ── SCRAMBLE respetando indentación ── */
     const data = [
       { cls: 'line-1', text: 'IN GUATEMALA' },
       { cls: 'line-2', text: '●● THEY CALL ME "MAJE"' },
