@@ -18,6 +18,8 @@
       --cream: #f0ece3;
       --ink: #111010;
       --muted: #9a9590;
+      --green: #4f6f52;
+      --soft-white: #ebe6dd;
       --ff: 'Inter', sans-serif;
     }
 
@@ -507,11 +509,22 @@
       .project-row:first-child { margin-top: 0; }
       .project-row:last-child { border-bottom: none; }
 
-      .project-row:nth-child(1) { background: #c8b394; z-index: 1; }
-      .project-row:nth-child(2) { background: #91a091; z-index: 2; }
-      .project-row:nth-child(3) { background: #d7a468; z-index: 3; }
-      .project-row:nth-child(4) { background: #ebe6dd; z-index: 4; }
-      .project-row:nth-child(5) { background: #b98576; z-index: 5; }
+      .project-row:nth-child(1),
+      .project-row:nth-child(3),
+      .project-row:nth-child(5) {
+        background: var(--green);
+      }
+
+      .project-row:nth-child(2),
+      .project-row:nth-child(4) {
+        background: var(--soft-white);
+      }
+
+      .project-row:nth-child(1) { z-index: 1; }
+      .project-row:nth-child(2) { z-index: 2; }
+      .project-row:nth-child(3) { z-index: 3; }
+      .project-row:nth-child(4) { z-index: 4; }
+      .project-row:nth-child(5) { z-index: 5; }
 
       .project-row.mobile-active {
         min-height: 360px;
@@ -527,12 +540,29 @@
         font-size: clamp(1.85rem, 8.5vw, 2.8rem);
         line-height: 0.9;
         letter-spacing: -0.075em;
-        color: rgba(17, 16, 16, 0.72);
+        color: rgba(17, 16, 16, 0.78);
         padding: 0;
         max-width: 96%;
       }
 
       .project-title::before { display: none; }
+
+      .project-row:nth-child(odd) .project-title,
+      .project-row:nth-child(odd) .project-cats,
+      .project-row:nth-child(odd) .project-type,
+      .project-row:nth-child(odd) .project-mobile-desc {
+        color: rgba(240, 236, 227, 0.88);
+      }
+
+      .project-row:nth-child(odd) .project-mobile-btn::before,
+      .project-row:nth-child(odd) .project-mobile-btn::after {
+        background: rgba(240, 236, 227, 0.92);
+      }
+
+      .project-row:nth-child(odd) .project-mobile-btn::after {
+        background: transparent;
+        border-color: rgba(240, 236, 227, 0.92);
+      }
 
       .project-cats,
       .project-type,
@@ -584,27 +614,48 @@
       }
 
       .project-mobile-btn {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 46px;
-        height: 46px;
+        display: block;
+        width: 34px;
+        height: 34px;
         position: absolute;
-        right: 1.2rem;
-        bottom: 1.2rem;
-        border-radius: 999px;
-        background: transparent;
-        color: var(--ink);
-        font-size: 2.1rem;
-        line-height: 1;
-        font-weight: 600;
-        transform: translateY(8px);
+        right: 1.25rem;
+        bottom: 1.25rem;
+        opacity: 0;
+        max-height: 34px;
+        transform: translateY(6px);
         transition: opacity 0.28s ease, transform 0.28s ease;
+      }
+
+      .project-mobile-btn::before,
+      .project-mobile-btn::after {
+        content: "";
+        position: absolute;
+        background: rgba(17, 16, 16, 0.86);
+      }
+
+      .project-mobile-btn::before {
+        width: 22px;
+        height: 3px;
+        top: 8px;
+        right: 3px;
+        transform: rotate(-45deg);
+        transform-origin: right center;
+        border-radius: 999px;
+      }
+
+      .project-mobile-btn::after {
+        width: 15px;
+        height: 15px;
+        top: 3px;
+        right: 3px;
+        border-top: 3px solid rgba(17, 16, 16, 0.86);
+        border-right: 3px solid rgba(17, 16, 16, 0.86);
+        background: transparent;
       }
 
       .project-row.mobile-active .project-mobile-btn {
         opacity: 1;
-        max-height: 46px;
+        max-height: 34px;
         transform: translateY(0);
       }
 
@@ -629,6 +680,7 @@
     }
   </style>
 </head>
+
 <body>
   <div class="cur" id="cur"></div>
 
@@ -703,7 +755,7 @@
           <span class="project-cats">Product Design</span>
           <span class="project-type">Rotoplas</span>
           <p class="project-mobile-desc">A water tank that becomes two things at once: water for the home and shelter for dogs.</p>
-          <span class="project-mobile-btn">↗</span>
+          <span class="project-mobile-btn" aria-label="Abrir proyecto"></span>
         </a>
 
         <a href="sky-clans.html" class="project-row" data-pc="pc2">
@@ -711,7 +763,7 @@
           <span class="project-cats">Experiential & Immersive</span>
           <span class="project-type">Clash of Clans</span>
           <p class="project-mobile-desc">An immersive experience that brings the world of Clash of Clans into real spaces.</p>
-          <span class="project-mobile-btn">↗</span>
+          <span class="project-mobile-btn" aria-label="Abrir proyecto"></span>
         </a>
 
         <a href="airbnb-parking.html" class="project-row" data-pc="pc3">
@@ -719,7 +771,7 @@
           <span class="project-cats">Creative E-Commerce</span>
           <span class="project-type">Airbnb</span>
           <p class="project-mobile-desc">A creative e-commerce idea that rethinks unused parking spaces as rentable city stays.</p>
-          <span class="project-mobile-btn">↗</span>
+          <span class="project-mobile-btn" aria-label="Abrir proyecto"></span>
         </a>
 
         <a href="access-lpass.html" class="project-row" data-pc="pc4">
@@ -727,7 +779,7 @@
           <span class="project-cats">Health and Prevention</span>
           <span class="project-type">Novartis</span>
           <p class="project-mobile-desc">A health prevention project designed to make important testing feel easier to access.</p>
-          <span class="project-mobile-btn">↗</span>
+          <span class="project-mobile-btn" aria-label="Abrir proyecto"></span>
         </a>
 
         <a href="the-other-intheritance.html" class="project-row" data-pc="pc5">
@@ -735,7 +787,7 @@
           <span class="project-cats">Health and Prevention</span>
           <span class="project-type">Novartis</span>
           <p class="project-mobile-desc">A prevention idea about the silent things families can inherit, and how to act earlier.</p>
-          <span class="project-mobile-btn">↗</span>
+          <span class="project-mobile-btn" aria-label="Abrir proyecto"></span>
         </a>
 
       </div>
