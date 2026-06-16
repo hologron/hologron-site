@@ -604,29 +604,54 @@
       }
 
       .project-mobile-btn {
-        display: block;
-        position: absolute;
-        right: 1.35rem;
-        bottom: 1.25rem;
-        font-size: 2rem;
-        line-height: 1;
-        font-weight: 300;
-        opacity: 0;
-        max-height: 40px;
-        color: rgba(17, 16, 16, 0.82);
-        transform: translateY(8px);
-        transition: opacity 0.28s ease, transform 0.28s ease;
-        pointer-events: none;
-      }
+  display: block;
+  position: absolute;
+  right: 1.35rem;
+  bottom: 1.35rem;
+  width: 32px;
+  height: 32px;
 
-      .project-row:nth-child(odd) .project-mobile-btn {
-        color: rgba(240, 236, 227, 0.9);
-      }
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.28s ease, transform 0.28s ease;
+  pointer-events: none;
+}
+.project-mobile-btn::before {
+  content: "";
+  position: absolute;
+  width: 23px;
+  height: 3px;
+  right: 3px;
+  top: 15px;
+  border-radius: 999px;
+  background: rgba(17, 16, 16, 0.86);
+  transform: rotate(-45deg);
+  transform-origin: right center;
+}
+
+.project-mobile-btn::after {
+  content: "";
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  right: 3px;
+  top: 4px;
+  border-top: 3px solid rgba(17, 16, 16, 0.86);
+  border-right: 3px solid rgba(17, 16, 16, 0.86);
+}
+
+      .project-row:nth-child(odd) .project-mobile-btn::before {
+  background: rgba(240, 236, 227, 0.9);
+}
+
+.project-row:nth-child(odd) .project-mobile-btn::after {
+  border-color: rgba(240, 236, 227, 0.9);
+}
 
       .project-row.mobile-active .project-mobile-btn {
-        opacity: 1;
-        transform: translateY(0);
-      }
+  opacity: 1;
+  transform: translateY(0);
+}
 
       .manifesto {
         padding: 5rem 1.5rem;
@@ -724,7 +749,7 @@
           <span class="project-cats">Product Design</span>
           <span class="project-type">Rotoplas</span>
           <p class="project-mobile-desc">A water tank that becomes two things at once: water for the home and shelter for dogs.</p>
-          <span class="project-mobile-btn" aria-hidden="true">↗</span>
+          <span class="project-mobile-btn" aria-label="Abrir proyecto"></span>
         </a>
 
         <a href="sky-clans.html" class="project-row" data-pc="pc2">
@@ -732,7 +757,7 @@
           <span class="project-cats">Experiential & Immersive</span>
           <span class="project-type">Clash of Clans</span>
           <p class="project-mobile-desc">An immersive experience that brings the world of Clash of Clans into real spaces.</p>
-          <span class="project-mobile-btn" aria-hidden="true">↗</span>
+          <span class="project-mobile-btn" aria-label="Abrir proyecto"></span>
         </a>
 
         <a href="airbnb-parking.html" class="project-row" data-pc="pc3">
@@ -740,7 +765,7 @@
           <span class="project-cats">Creative E-Commerce</span>
           <span class="project-type">Airbnb</span>
           <p class="project-mobile-desc">A creative e-commerce idea that rethinks unused parking spaces as rentable city stays.</p>
-          <span class="project-mobile-btn" aria-hidden="true">↗</span>
+          <span class="project-mobile-btn" aria-label="Abrir proyecto"></span>
         </a>
 
         <a href="access-lpass.html" class="project-row" data-pc="pc4">
@@ -748,7 +773,7 @@
           <span class="project-cats">Health and Prevention</span>
           <span class="project-type">Novartis</span>
           <p class="project-mobile-desc">A health prevention project designed to make important testing feel easier to access.</p>
-          <span class="project-mobile-btn" aria-hidden="true">↗</span>
+          <span class="project-mobile-btn" aria-label="Abrir proyecto"></span>
         </a>
 
         <a href="the-other-intheritance.html" class="project-row" data-pc="pc5">
@@ -756,7 +781,7 @@
           <span class="project-cats">Health and Prevention</span>
           <span class="project-type">Novartis</span>
           <p class="project-mobile-desc">A prevention idea about the silent things families can inherit, and how to act earlier.</p>
-          <span class="project-mobile-btn" aria-hidden="true">↗</span>
+          <span class="project-mobile-btn" aria-label="Abrir proyecto"></span>
         </a>
 
       </div>
