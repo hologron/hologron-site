@@ -166,7 +166,9 @@
       display: contents;
     }
 
-    .project-mobile-media {
+    .project-mobile-media,
+    .project-mobile-desc,
+    .project-mobile-btn {
       display: none;
     }
 
@@ -507,6 +509,10 @@
         padding-bottom: 5rem;
       }
 
+      .projects-mobile-track.has-active .project-row:not(.mobile-active) {
+        opacity: 0.68;
+      }
+
       .project-row {
         width: 100%;
         min-height: 210px;
@@ -520,6 +526,11 @@
         position: relative;
         margin-top: -92px;
         box-shadow: 0 18px 38px rgba(17, 16, 16, 0.12);
+        transition:
+          min-height 0.32s ease,
+          transform 0.32s ease,
+          opacity 0.25s ease,
+          box-shadow 0.32s ease;
       }
 
       .project-row:first-child {
@@ -555,6 +566,12 @@
         z-index: 5;
       }
 
+      .project-row.mobile-active {
+        min-height: 345px;
+        transform: translateY(-10px);
+        box-shadow: 0 24px 48px rgba(17, 16, 16, 0.18);
+      }
+
       .project-mobile-media {
         display: none;
       }
@@ -588,6 +605,56 @@
         font-weight: 600;
         text-align: left;
         color: rgba(17, 16, 16, 0.45);
+      }
+
+      .project-mobile-desc {
+        display: block;
+        opacity: 0;
+        max-height: 0;
+        overflow: hidden;
+        margin-top: 0;
+        font-size: 0.92rem;
+        line-height: 1.34;
+        font-weight: 500;
+        color: rgba(17, 16, 16, 0.62);
+        max-width: 92%;
+        transition:
+          opacity 0.28s ease,
+          max-height 0.32s ease,
+          margin-top 0.32s ease;
+      }
+
+      .project-mobile-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: max-content;
+        opacity: 0;
+        transform: translateY(8px);
+        margin-top: 0;
+        padding: 0.72rem 1rem;
+        border-radius: 999px;
+        background: rgba(17, 16, 16, 0.78);
+        color: var(--cream);
+        font-size: 0.78rem;
+        font-weight: 800;
+        letter-spacing: 0.02em;
+        transition:
+          opacity 0.28s ease,
+          transform 0.28s ease,
+          margin-top 0.28s ease;
+      }
+
+      .project-row.mobile-active .project-mobile-desc {
+        opacity: 1;
+        max-height: 120px;
+        margin-top: 1rem;
+      }
+
+      .project-row.mobile-active .project-mobile-btn {
+        opacity: 1;
+        transform: translateY(0);
+        margin-top: 1.1rem;
       }
 
       .manifesto {
@@ -689,15 +756,17 @@
     </div>
 
     <div class="projects-mobile-shell">
-      <div class="projects-mobile-track">
+      <div class="projects-mobile-track" id="projectsMobileTrack">
 
         <a href="home-tank.html" class="project-row" data-pc="pc1">
           <div class="project-mobile-media">
             <img src="./assets/proyecto1/test.jpg" alt="Home Tank">
           </div>
           <span class="project-title">Home Tank</span>
+          <p class="project-mobile-desc">A water tank that becomes two things at once: water for the home and shelter for dogs.</p>
           <span class="project-cats">Product Design</span>
           <span class="project-type">Rotoplas</span>
+          <span class="project-mobile-btn">More info →</span>
         </a>
 
         <a href="sky-clans.html" class="project-row" data-pc="pc2">
@@ -705,8 +774,10 @@
             <img src="./assets/proyecto2/thumb-1.jpg" alt="Sky Clans">
           </div>
           <span class="project-title">Sky Clans</span>
+          <p class="project-mobile-desc">An immersive experience that brings the world of Clash of Clans into real spaces.</p>
           <span class="project-cats">Experiential & Immersive</span>
           <span class="project-type">Clash of Clans</span>
+          <span class="project-mobile-btn">More info →</span>
         </a>
 
         <a href="airbnb-parking.html" class="project-row" data-pc="pc3">
@@ -714,8 +785,10 @@
             <img src="./assets/proyecto3/thumb-1.jpg" alt="Airbnb Parking">
           </div>
           <span class="project-title">Airbnb Parking</span>
+          <p class="project-mobile-desc">A creative e-commerce idea that rethinks unused parking spaces as rentable city stays.</p>
           <span class="project-cats">Creative E-Commerce</span>
           <span class="project-type">Airbnb</span>
+          <span class="project-mobile-btn">More info →</span>
         </a>
 
         <a href="access-lpass.html" class="project-row" data-pc="pc4">
@@ -723,8 +796,10 @@
             <img src="./assets/proyecto4/thumb-1.jpg" alt="Access Lp(a)ss">
           </div>
           <span class="project-title">Access Lp(a)ss</span>
+          <p class="project-mobile-desc">A health prevention project designed to make important testing feel easier to access.</p>
           <span class="project-cats">Health and Prevention</span>
           <span class="project-type">Novartis</span>
+          <span class="project-mobile-btn">More info →</span>
         </a>
 
         <a href="the-other-intheritance.html" class="project-row" data-pc="pc5">
@@ -732,8 +807,10 @@
             <img src="./assets/proyecto5/thumb-1.jpg" alt="The Other Inheritance">
           </div>
           <span class="project-title">The Other Inheritance</span>
+          <p class="project-mobile-desc">A prevention idea about the silent things families can inherit, and how to act earlier.</p>
           <span class="project-cats">Health and Prevention</span>
           <span class="project-type">Novartis</span>
+          <span class="project-mobile-btn">More info →</span>
         </a>
 
       </div>
@@ -800,6 +877,41 @@
       if (active) {
         active.style.left = (e.clientX + 28) + 'px';
         active.style.top  = (e.clientY - 55) + 'px';
+      }
+    });
+
+    const projectsMobileTrack = document.getElementById('projectsMobileTrack');
+
+    document.querySelectorAll('.project-row').forEach(card => {
+      card.addEventListener('click', e => {
+        const isMobile = window.innerWidth <= 768;
+        if (!isMobile) return;
+
+        const clickedButton = e.target.closest('.project-mobile-btn');
+        const isActive = card.classList.contains('mobile-active');
+
+        if (clickedButton && isActive) return;
+
+        e.preventDefault();
+
+        document.querySelectorAll('.project-row').forEach(item => {
+          item.classList.remove('mobile-active');
+        });
+
+        card.classList.add('mobile-active');
+        projectsMobileTrack?.classList.add('has-active');
+      });
+    });
+
+    document.addEventListener('click', e => {
+      const isMobile = window.innerWidth <= 768;
+      if (!isMobile) return;
+
+      if (!e.target.closest('.project-row')) {
+        document.querySelectorAll('.project-row').forEach(item => {
+          item.classList.remove('mobile-active');
+        });
+        projectsMobileTrack?.classList.remove('has-active');
       }
     });
 
