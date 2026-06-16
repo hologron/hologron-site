@@ -478,7 +478,7 @@
 
       .projects-mobile-shell {
         display: block;
-        padding: 0 1.5rem;
+        padding: 0 0.55rem;
         overflow: visible;
       }
 
@@ -496,29 +496,23 @@
         flex-direction: column;
         align-items: flex-start;
         justify-content: flex-start;
-        padding: 1.15rem 1.2rem;
+        padding: 1.2rem 1.25rem;
         border: none;
         border-radius: 26px;
         overflow: hidden;
         position: relative;
-        margin-top: -34px;
+        margin-top: -20px;
+        background: var(--soft-white);
         box-shadow: 0 16px 34px rgba(17, 16, 16, 0.12);
-        transition: min-height 0.34s ease, box-shadow 0.34s ease, padding 0.34s ease;
+        transition:
+          min-height 0.34s ease,
+          box-shadow 0.34s ease,
+          padding 0.34s ease,
+          background 0.34s ease;
       }
 
       .project-row:first-child { margin-top: 0; }
       .project-row:last-child { border-bottom: none; }
-
-      .project-row:nth-child(1),
-      .project-row:nth-child(3),
-      .project-row:nth-child(5) {
-        background: var(--green);
-      }
-
-      .project-row:nth-child(2),
-      .project-row:nth-child(4) {
-        background: var(--soft-white);
-      }
 
       .project-row:nth-child(1) { z-index: 1; }
       .project-row:nth-child(2) { z-index: 2; }
@@ -530,6 +524,7 @@
         min-height: 360px;
         padding: 1.35rem 1.4rem;
         z-index: 20;
+        background: var(--green);
         box-shadow: 0 24px 48px rgba(17, 16, 16, 0.18);
       }
 
@@ -546,13 +541,6 @@
       }
 
       .project-title::before { display: none; }
-
-      .project-row:nth-child(odd) .project-title,
-      .project-row:nth-child(odd) .project-cats,
-      .project-row:nth-child(odd) .project-type,
-      .project-row:nth-child(odd) .project-mobile-desc {
-        color: rgba(240, 236, 227, 0.88);
-      }
 
       .project-cats,
       .project-type,
@@ -572,7 +560,14 @@
         font-weight: 800;
         text-align: left;
         color: rgba(17, 16, 16, 0.62);
-        transition: opacity 0.28s ease, max-height 0.3s ease, margin-top 0.3s ease;
+        transition: opacity 0.28s ease, max-height 0.3s ease, margin-top 0.3s ease, color 0.25s ease;
+      }
+
+      .project-row.mobile-active .project-title,
+      .project-row.mobile-active .project-cats,
+      .project-row.mobile-active .project-type,
+      .project-row.mobile-active .project-mobile-desc {
+        color: rgba(240, 236, 227, 0.92);
       }
 
       .project-row.mobile-active .project-cats {
@@ -594,7 +589,7 @@
         font-weight: 700;
         color: rgba(17, 16, 16, 0.58);
         max-width: 82%;
-        transition: opacity 0.28s ease, max-height 0.3s ease, margin-top 0.3s ease;
+        transition: opacity 0.28s ease, max-height 0.3s ease, margin-top 0.3s ease, color 0.25s ease;
       }
 
       .project-row.mobile-active .project-mobile-desc {
@@ -614,10 +609,10 @@
         overflow: visible;
         opacity: 0;
         transform: translateY(6px);
-        transition: opacity 0.28s ease, transform 0.28s ease;
+        transition: opacity 0.28s ease, transform 0.28s ease, background 0.25s ease;
         pointer-events: auto;
         z-index: 30;
-        background: rgba(17, 16, 16, 0.86);
+        background: rgba(240, 236, 227, 0.92);
         -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 17L17 7M17 7H9M17 7V15' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 28px 28px no-repeat;
         mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 17L17 7M17 7H9M17 7V15' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 28px 28px no-repeat;
       }
@@ -625,10 +620,6 @@
       .project-mobile-btn::before,
       .project-mobile-btn::after {
         display: none;
-      }
-
-      .project-row:nth-child(odd) .project-mobile-btn {
-        background: rgba(240, 236, 227, 0.9);
       }
 
       .project-row.mobile-active .project-mobile-btn {
