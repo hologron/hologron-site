@@ -604,54 +604,57 @@
       }
 
       .project-mobile-btn {
-  display: block;
-  position: absolute;
-  right: 1.35rem;
-  bottom: 1.35rem;
-  width: 32px;
-  height: 32px;
+        display: block;
+        position: absolute;
+        right: 1.35rem;
+        bottom: 1.35rem;
+        width: 44px;
+        height: 44px;
+        max-height: 44px;
+        overflow: visible;
+        opacity: 0;
+        transform: translateY(6px);
+        transition: opacity 0.28s ease, transform 0.28s ease;
+        pointer-events: auto;
+        z-index: 30;
+      }
 
-  opacity: 0;
-  transform: translateY(6px);
-  transition: opacity 0.28s ease, transform 0.28s ease;
-  pointer-events: none;
-}
-.project-mobile-btn::before {
-  content: "";
-  position: absolute;
-  width: 23px;
-  height: 3px;
-  right: 3px;
-  top: 15px;
-  border-radius: 999px;
-  background: rgba(17, 16, 16, 0.86);
-  transform: rotate(-45deg);
-  transform-origin: right center;
-}
+      .project-mobile-btn::before {
+        content: "";
+        position: absolute;
+        width: 24px;
+        height: 3px;
+        right: 8px;
+        top: 24px;
+        border-radius: 999px;
+        background: rgba(17, 16, 16, 0.86);
+        transform: rotate(-45deg);
+        transform-origin: right center;
+      }
 
-.project-mobile-btn::after {
-  content: "";
-  position: absolute;
-  width: 13px;
-  height: 13px;
-  right: 3px;
-  top: 4px;
-  border-top: 3px solid rgba(17, 16, 16, 0.86);
-  border-right: 3px solid rgba(17, 16, 16, 0.86);
-}
+      .project-mobile-btn::after {
+        content: "";
+        position: absolute;
+        width: 14px;
+        height: 14px;
+        right: 8px;
+        top: 11px;
+        border-top: 3px solid rgba(17, 16, 16, 0.86);
+        border-right: 3px solid rgba(17, 16, 16, 0.86);
+      }
 
       .project-row:nth-child(odd) .project-mobile-btn::before {
-  background: rgba(240, 236, 227, 0.9);
-}
+        background: rgba(240, 236, 227, 0.9);
+      }
 
-.project-row:nth-child(odd) .project-mobile-btn::after {
-  border-color: rgba(240, 236, 227, 0.9);
-}
+      .project-row:nth-child(odd) .project-mobile-btn::after {
+        border-color: rgba(240, 236, 227, 0.9);
+      }
 
       .project-row.mobile-active .project-mobile-btn {
-  opacity: 1;
-  transform: translateY(0);
-}
+        opacity: 1;
+        transform: translateY(0);
+      }
 
       .manifesto {
         padding: 5rem 1.5rem;
@@ -859,7 +862,10 @@
         const clickedButton = e.target.closest('.project-mobile-btn');
         const isActive = card.classList.contains('mobile-active');
 
-        if (clickedButton && isActive) return;
+        if (clickedButton && isActive) {
+          window.location.href = card.getAttribute('href');
+          return;
+        }
 
         e.preventDefault();
 
