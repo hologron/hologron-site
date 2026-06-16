@@ -12,11 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
       --cream: #f0ece3;
@@ -28,12 +24,7 @@
     html { scroll-behavior: smooth; }
 
     body {
-      background: radial-gradient(
-        circle at 50% 0%,
-        #4f6f52 0%,
-        #7ea07f 18%,
-        #f0ece3 42%
-      );
+      background: radial-gradient(circle at 50% 0%, #4f6f52 0%, #7ea07f 18%, #f0ece3 42%);
       color: var(--ink);
       font-family: var(--ff);
       font-weight: 400;
@@ -128,13 +119,9 @@
       height: auto;
     }
 
-    #work {
-      padding: 5rem 3.5rem 0;
-    }
+    #work { padding: 5rem 3.5rem 0; }
 
-    .work-intro {
-      margin-bottom: 4rem;
-    }
+    .work-intro { margin-bottom: 4rem; }
 
     .work-intro-body {
       font-size: clamp(2rem, 4vw, 4.5rem);
@@ -162,14 +149,10 @@
     }
 
     .projects-mobile-shell,
-    .projects-mobile-track {
-      display: contents;
-    }
+    .projects-mobile-track { display: contents; }
 
     .project-mobile-desc,
-    .project-mobile-btn {
-      display: none;
-    }
+    .project-mobile-btn { display: none; }
 
     .project-row {
       display: grid;
@@ -290,9 +273,7 @@
       transition: opacity 0.2s;
     }
 
-    .manifesto p a:hover {
-      opacity: 0.5;
-    }
+    .manifesto p a:hover { opacity: 0.5; }
 
     footer {
       border-top: 1px solid rgba(17, 16, 16, 0.12);
@@ -474,9 +455,7 @@
         margin-left: 2.5em;
       }
 
-      #work {
-        padding: 42vh 0 0;
-      }
+      #work { padding: 42vh 0 0; }
 
       .work-intro {
         margin-bottom: 3.5rem;
@@ -522,19 +501,11 @@
         position: relative;
         margin-top: -34px;
         box-shadow: 0 16px 34px rgba(17, 16, 16, 0.12);
-        transition:
-          min-height 0.34s ease,
-          box-shadow 0.34s ease,
-          padding 0.34s ease;
+        transition: min-height 0.34s ease, box-shadow 0.34s ease, padding 0.34s ease;
       }
 
-      .project-row:first-child {
-        margin-top: 0;
-      }
-
-      .project-row:last-child {
-        border-bottom: none;
-      }
+      .project-row:first-child { margin-top: 0; }
+      .project-row:last-child { border-bottom: none; }
 
       .project-row:nth-child(1) { background: #c8b394; z-index: 1; }
       .project-row:nth-child(2) { background: #91a091; z-index: 2; }
@@ -561,9 +532,7 @@
         max-width: 96%;
       }
 
-      .project-title::before {
-        display: none;
-      }
+      .project-title::before { display: none; }
 
       .project-cats,
       .project-type,
@@ -583,10 +552,7 @@
         font-weight: 800;
         text-align: left;
         color: rgba(17, 16, 16, 0.62);
-        transition:
-          opacity 0.28s ease,
-          max-height 0.3s ease,
-          margin-top 0.3s ease;
+        transition: opacity 0.28s ease, max-height 0.3s ease, margin-top 0.3s ease;
       }
 
       .project-row.mobile-active .project-cats {
@@ -607,11 +573,8 @@
         line-height: 1.28;
         font-weight: 700;
         color: rgba(17, 16, 16, 0.58);
-        max-width: 92%;
-        transition:
-          opacity 0.28s ease,
-          max-height 0.3s ease,
-          margin-top 0.3s ease;
+        max-width: 82%;
+        transition: opacity 0.28s ease, max-height 0.3s ease, margin-top 0.3s ease;
       }
 
       .project-row.mobile-active .project-mobile-desc {
@@ -621,32 +584,28 @@
       }
 
       .project-mobile-btn {
-        display: inline-flex;
+        display: flex;
         align-items: center;
         justify-content: center;
-        width: max-content;
-        transform: translateY(8px);
-        padding: 0;
+        width: 46px;
+        height: 46px;
+        position: absolute;
+        right: 1.2rem;
+        bottom: 1.2rem;
         border-radius: 999px;
-        background: rgba(17, 16, 16, 0.82);
-        color: var(--cream);
-        font-size: 0.78rem;
-        font-weight: 800;
-        letter-spacing: 0.02em;
-        transition:
-          opacity 0.28s ease,
-          transform 0.28s ease,
-          max-height 0.3s ease,
-          margin-top 0.3s ease,
-          padding 0.3s ease;
+        background: transparent;
+        color: var(--ink);
+        font-size: 2.1rem;
+        line-height: 1;
+        font-weight: 600;
+        transform: translateY(8px);
+        transition: opacity 0.28s ease, transform 0.28s ease;
       }
 
       .project-row.mobile-active .project-mobile-btn {
         opacity: 1;
-        max-height: 48px;
+        max-height: 46px;
         transform: translateY(0);
-        margin-top: 1.25rem;
-        padding: 0.72rem 1rem;
       }
 
       .manifesto {
@@ -673,21 +632,11 @@
 <body>
   <div class="cur" id="cur"></div>
 
-  <div class="prev-card" id="pc1">
-    <img src="./assets/proyecto1/test.jpg" alt="Preview proyecto 1" />
-  </div>
-  <div class="prev-card" id="pc2">
-    <img src="./assets/proyecto2/thumb-1.jpg" alt="Preview proyecto 2" />
-  </div>
-  <div class="prev-card" id="pc3">
-    <img src="./assets/proyecto3/thumb-1.jpg" alt="Preview proyecto 3" />
-  </div>
-  <div class="prev-card" id="pc4">
-    <img src="./assets/proyecto4/thumb-1.jpg" alt="Preview Access Lp(a)ss" />
-  </div>
-  <div class="prev-card" id="pc5">
-    <img src="./assets/proyecto5/thumb-1.jpg" alt="Preview The Other Intheritance" />
-  </div>
+  <div class="prev-card" id="pc1"><img src="./assets/proyecto1/test.jpg" alt="Preview proyecto 1" /></div>
+  <div class="prev-card" id="pc2"><img src="./assets/proyecto2/thumb-1.jpg" alt="Preview proyecto 2" /></div>
+  <div class="prev-card" id="pc3"><img src="./assets/proyecto3/thumb-1.jpg" alt="Preview proyecto 3" /></div>
+  <div class="prev-card" id="pc4"><img src="./assets/proyecto4/thumb-1.jpg" alt="Preview Access Lp(a)ss" /></div>
+  <div class="prev-card" id="pc5"><img src="./assets/proyecto5/thumb-1.jpg" alt="Preview The Other Intheritance" /></div>
 
   <nav>
     <a href="#hey" class="nav-item active">Hey</a>
@@ -706,7 +655,6 @@
 
     <div class="mobile-nav-panel" id="mobileMenuPanel">
       <a href="#hey" class="mobile-link">Hey</a>
-
       <button class="mobile-link mobile-work-toggle" id="mobileWorkToggle" type="button">
         <span>Work</span>
         <span id="mobileWorkIcon">+</span>
@@ -755,7 +703,7 @@
           <span class="project-cats">Product Design</span>
           <span class="project-type">Rotoplas</span>
           <p class="project-mobile-desc">A water tank that becomes two things at once: water for the home and shelter for dogs.</p>
-          <span class="project-mobile-btn">More info →</span>
+          <span class="project-mobile-btn">↗</span>
         </a>
 
         <a href="sky-clans.html" class="project-row" data-pc="pc2">
@@ -763,7 +711,7 @@
           <span class="project-cats">Experiential & Immersive</span>
           <span class="project-type">Clash of Clans</span>
           <p class="project-mobile-desc">An immersive experience that brings the world of Clash of Clans into real spaces.</p>
-          <span class="project-mobile-btn">More info →</span>
+          <span class="project-mobile-btn">↗</span>
         </a>
 
         <a href="airbnb-parking.html" class="project-row" data-pc="pc3">
@@ -771,7 +719,7 @@
           <span class="project-cats">Creative E-Commerce</span>
           <span class="project-type">Airbnb</span>
           <p class="project-mobile-desc">A creative e-commerce idea that rethinks unused parking spaces as rentable city stays.</p>
-          <span class="project-mobile-btn">More info →</span>
+          <span class="project-mobile-btn">↗</span>
         </a>
 
         <a href="access-lpass.html" class="project-row" data-pc="pc4">
@@ -779,7 +727,7 @@
           <span class="project-cats">Health and Prevention</span>
           <span class="project-type">Novartis</span>
           <p class="project-mobile-desc">A health prevention project designed to make important testing feel easier to access.</p>
-          <span class="project-mobile-btn">More info →</span>
+          <span class="project-mobile-btn">↗</span>
         </a>
 
         <a href="the-other-intheritance.html" class="project-row" data-pc="pc5">
@@ -787,7 +735,7 @@
           <span class="project-cats">Health and Prevention</span>
           <span class="project-type">Novartis</span>
           <p class="project-mobile-desc">A prevention idea about the silent things families can inherit, and how to act earlier.</p>
-          <span class="project-mobile-btn">More info →</span>
+          <span class="project-mobile-btn">↗</span>
         </a>
 
       </div>
@@ -938,13 +886,13 @@
       }
 
       setText(newText) {
-        const len     = newText.length;
+        const len = newText.length;
         const promise = new Promise(resolve => (this.resolve = resolve));
         this.queue = [];
 
         for (let i = 0; i < len; i++) {
           const start = Math.floor(Math.random() * 12);
-          const end   = start + Math.floor(Math.random() * 12);
+          const end = start + Math.floor(Math.random() * 12);
           this.queue.push({ to: newText[i], start, end });
         }
 
